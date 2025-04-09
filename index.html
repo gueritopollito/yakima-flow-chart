@@ -2,44 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yakima River Flow</title>
 
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Chart.js + Annotation -->
+  <!-- Chart.js + Plugins -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
 
   <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-   ></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Your JS -->
-  <script src="js/yakima.js" defer></script>
-
-  <!-- Your CSS -->
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Your JavaScript -->
+  <script src="js/yakima.js" defer></script>
 </head>
 <body>
   <h1>Yakima River - Streamflow</h1>
   <div id="currentFlow">Loading current flow...</div>
 
-  <!-- 📍 MAP GOES HERE -->
   <div id="map" style="height: 400px; margin-bottom: 2rem;"></div>
 
   <div class="chart-container">
     <div class="chart-box">
-      <h2 style="text-align:center">Past 7 Days</h2>
+      <h2 id="sevenDayTitle" style="text-align:center">Past 7 Days</h2>
       <canvas id="yakimaFlowChart"></canvas>
     </div>
     <div class="chart-box">
-      <h2 style="text-align:center">Past Year</h2>
+      <h2 id="yearTitle" style="text-align:center">Past Year</h2>
       <canvas id="yakimaYearChart"></canvas>
     </div>
   </div>

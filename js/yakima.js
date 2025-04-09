@@ -1,18 +1,20 @@
 // Add a Leaflet map to select USGS sites along the Yakima River
 const siteData = [
   { id: '12484500', name: 'Umtanum near Ellensburg', lat: 46.884, lng: -120.488 },
-  { id: '12503000', name: 'Union Gap near Yakima', lat: 46.555, lng: -120.475 },
-  { id: '12508625', name: 'Below Satus Creek near Satus', lat: 46.240, lng: -120.278 },
-  { id: '12510500', name: 'Kiona, WA', lat: 46.297, lng: -119.480 },
-  { id: '12511800', name: 'Van Giesen Bridge near Richland', lat: 46.271, lng: -119.275 }
+  { id: '12479000', name: 'Cle Elum River near Roslyn', lat: 47.227, lng: -121.030 },
+  { id: '12478500', name: 'Yakima River at Cle Elum', lat: 47.195, lng: -120.939 },
+  { id: '12479600', name: 'Yakima River near South Cle Elum', lat: 47.181, lng: -120.944 }
 ];
 
 const todayISO = new Date().toISOString().slice(0, 10);
 let recentDatesSet = new Set();
 let siteId = siteData[0].id; // default
+let siteName = siteData[0].name;
+let flowChart = null;
+let yearChart = null;
 
 function loadMap() {
-  const map = L.map('map').setView([46.5, -120.5], 8);
+  const map = L.map('map').setView([47.0, -120.7], 9);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
@@ -20,17 +22,38 @@ function loadMap() {
 
   siteData.forEach(site => {
     const marker = L.marker([site.lat, site.lng]).addTo(map);
-    marker.bindPopup(site.name);
-    marker.on('click', () => {
+    marker.bindPopup(`${site.name}<br>Loading data...`);
+
+    marker.on('click', async () => {
       siteId = site.id;
-      fetch7DayData().then(fetchYearData);
+      siteName = site.name;
+      const hasData = await checkDataAvailability(site.id);
+      if (hasData) {
+        fetch7DayData().then(fetchYearData);
+      } else {
+        alert(`No recent flow data available for ${site.name}.`);
+      }
+    });
+
+    checkDataAvailability(site.id).then(hasData => {
+      if (!hasData) {
+        marker.setPopupContent(`${site.name}<br>No recent data available.`);
+      } else {
+        marker.setPopupContent(`${site.name}`);
+      }
     });
   });
 }
 
+async function checkDataAvailability(siteId) {
+  const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.value.timeSeries.length > 0;
+}
+
 async function fetch7DayData() {
   recentDatesSet.clear();
-
   const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
   const response = await fetch(url);
   const data = await response.json();
@@ -46,48 +69,53 @@ async function fetch7DayData() {
 
   const latestFlow = values[values.length - 1];
   document.getElementById('currentFlow').textContent = `Current Flow: ${latestFlow.toLocaleString()} CFS`;
+  document.getElementById('sevenDayTitle').textContent = `Past 7 Days – ${siteName}`;
 
-  new Chart(document.getElementById('yakimaFlowChart'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Flow (CFS)',
-        data: values,
-        borderColor: '#4e79a7',
-        backgroundColor: 'rgba(78, 121, 167, 0.1)',
-        borderWidth: 2,
-        fill: true,
-        tension: 0.3,
-        pointRadius: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        tooltip: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            label: function(context) {
-              return `${context.dataset.label}: ${context.formattedValue} CFS`;
-            }
-          }
-        },
-        legend: { display: false }
+  if (flowChart) {
+    flowChart.data.labels = labels;
+    flowChart.data.datasets[0].data = values;
+    flowChart.update();
+  } else {
+    flowChart = new Chart(document.getElementById('yakimaFlowChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Flow (CFS)',
+          data: values,
+          borderColor: '#4e79a7',
+          backgroundColor: 'rgba(78, 121, 167, 0.1)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 0
+        }]
       },
-      scales: {
-        x: {
-          title: { display: true, text: 'Date / Time', font: { size: 14 } },
-          ticks: { maxTicksLimit: 10 }
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              label: context => `${context.dataset.label}: ${context.formattedValue} CFS`
+            }
+          },
+          legend: { display: false }
         },
-        y: {
-          title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
-          grid: { color: '#e0e0e0' }
+        scales: {
+          x: {
+            title: { display: true, text: 'Date / Time', font: { size: 14 } },
+            ticks: { maxTicksLimit: 10 }
+          },
+          y: {
+            title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
+            grid: { color: '#e0e0e0' }
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
 
 async function fetchYearData() {
@@ -110,77 +138,84 @@ async function fetchYearData() {
     }
   });
 
-  new Chart(document.getElementById('yakimaYearChart'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Recent Trend (7D)',
-          data: recentFlowValues,
-          borderColor: '#4e79a7',
-          borderWidth: 2,
-          fill: false,
-          tension: 0.3,
-          pointRadius: 0,
-          spanGaps: true
-        },
-        {
-          label: 'Daily Avg Flow (CFS)',
-          data: flowValues,
-          borderColor: '#f28e2c',
-          backgroundColor: 'rgba(242, 142, 44, 0.1)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.3,
-          pointRadius: 0
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        annotation: {
-          annotations: {
-            todayLine: {
-              type: 'line',
-              xMin: todayISO,
-              xMax: todayISO,
-              borderColor: 'red',
-              borderWidth: 2,
-              label: {
-                content: 'Today',
-                enabled: true,
-                position: 'start',
-                backgroundColor: 'rgba(255,255,255,0.8)',
-                color: '#d62728'
+  document.getElementById('yearTitle').textContent = `Past Year – ${siteName}`;
+
+  if (yearChart) {
+    yearChart.data.labels = labels;
+    yearChart.data.datasets[0].data = recentFlowValues;
+    yearChart.data.datasets[1].data = flowValues;
+    yearChart.update();
+  } else {
+    yearChart = new Chart(document.getElementById('yakimaYearChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Recent Trend (7D)',
+            data: recentFlowValues,
+            borderColor: '#4e79a7',
+            borderWidth: 2,
+            fill: false,
+            tension: 0.3,
+            pointRadius: 0,
+            spanGaps: true
+          },
+          {
+            label: 'Daily Avg Flow (CFS)',
+            data: flowValues,
+            borderColor: '#f28e2c',
+            backgroundColor: 'rgba(242, 142, 44, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          annotation: {
+            annotations: {
+              todayLine: {
+                type: 'line',
+                xMin: todayISO,
+                xMax: todayISO,
+                borderColor: 'red',
+                borderWidth: 2,
+                label: {
+                  content: 'Today',
+                  enabled: true,
+                  position: 'start',
+                  backgroundColor: 'rgba(255,255,255,0.8)',
+                  color: '#d62728'
+                }
               }
             }
-          }
-        },
-        tooltip: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            label: function(context) {
-              return `${context.dataset.label}: ${context.formattedValue} CFS`;
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+              label: context => `${context.dataset.label}: ${context.formattedValue} CFS`
             }
+          },
+          legend: { display: true }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Date', font: { size: 14 } },
+            ticks: { maxTicksLimit: 12 }
+          },
+          y: {
+            title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
+            grid: { color: '#e0e0e0' }
           }
-        },
-        legend: { display: true }
-      },
-      scales: {
-        x: {
-          title: { display: true, text: 'Date', font: { size: 14 } },
-          ticks: { maxTicksLimit: 12 }
-        },
-        y: {
-          title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
-          grid: { color: '#e0e0e0' }
         }
       }
-    }
-  });
+    });
+  }
 }
 
 loadMap();
