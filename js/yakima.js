@@ -32,7 +32,19 @@ const siteData = [
   // Sauk River
   { id: '12189500', name: 'Sauk River near Darrington', lat: 48.255, lng: -121.567, group: 'Sauk' },
   { id: '12186000', name: 'Sauk River above White Chuck River near Darrington', lat: 48.224, lng: -121.453, group: 'Sauk' },
-  { id: '12187500', name: 'Sauk River at Darrington', lat: 48.254, lng: -121.608, group: 'Sauk' }
+  { id: '12187500', name: 'Sauk River at Darrington', lat: 48.254, lng: -121.608, group: 'Sauk' },
+
+  // Klickitat River
+  { id: '14113000', name: 'Klickitat River near Pitt', lat: 45.931, lng: -121.096, group: 'Klickitat' },
+
+  // Methow River
+  { id: '12449950', name: 'Methow River near Pateros', lat: 48.050, lng: -119.901, group: 'Methow' },
+  { id: '12448500', name: 'Methow River at Twisp', lat: 48.364, lng: -120.121, group: 'Methow' },
+
+  // Olympic Peninsula
+  { id: '12045500', name: 'Elwha River at McDonald Bridge near Port Angeles', lat: 48.052, lng: -123.558, group: 'Olympic' },
+  { id: '12048000', name: 'Dungeness River near Sequim', lat: 48.101, lng: -123.146, group: 'Olympic' },
+  { id: '12082500', name: 'Nisqually River near National', lat: 46.743, lng: -122.003, group: 'Olympic' }
 ];
 
 const groupColors = {
@@ -42,14 +54,16 @@ const groupColors = {
   Snoqualmie: 'orange',
   Cedar: 'violet',
   Stillaguamish: 'grey',
-  Sauk: 'black'
+  Sauk: 'black',
+  Klickitat: 'yellow',
+  Methow: 'violet',
+  Olympic: 'red'
 };
 
 const mapCenter = [47.4, -121.7];
 const mapZoom = 8;
 
-const filterGroups = ['All', 'Yakima', 'Skagit', 'Skykomish', 'Snoqualmie', 'Cedar', 'Stillaguamish', 'Sauk'];
-
+const filterGroups = ['All', 'Yakima', 'Skagit', 'Skykomish', 'Snoqualmie', 'Cedar', 'Stillaguamish', 'Sauk', 'Klickitat', 'Methow', 'Olympic'];
 
 let siteId = siteData[0].id;
 let siteName = siteData[0].name;
@@ -128,6 +142,11 @@ let map = L.map('map').setView(mapCenter, mapZoom);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
+
+const attributionImgs = document.querySelectorAll('.leaflet-control-attribution img');
+attributionImgs.forEach(img => img.remove());
+
+
 
 siteData.forEach(site => {
   const icon = new L.Icon({
