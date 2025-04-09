@@ -1,0 +1,69 @@
+// Simple example: Yakima River streamflow chart using USGS API and Chart.js
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yakima River Flow</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f7f7f7;
+    }
+    canvas {
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Yakima River - Streamflow (Past 7 Days)</h1>
+  <canvas id="yakimaFlowChart"></canvas>
+
+  <script>
+    async function fetchYakimaData() {
+      const siteId = '12484500'; // Yakima River at Umtanum
+      const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      const timeSeries = data.value.timeSeries[0].values[0].value;
+
+      const labels = timeSeries.map(dp => new Date(dp.dateTime).toLocaleString());
+      const values = timeSeries.map(dp => parseFloat(dp.value));
+
+      new Chart(document.getElementById('yakimaFlowChart'), {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Flow (CFS)',
+            data: values,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              display: true,
+              title: { display: true, text: 'Date/Time' }
+            },
+            y: {
+              display: true,
+              title: { display: true, text: 'Cubic Feet per Second (CFS)' }
+            }
+          }
+        }
+      });
+    }
+
+    fetchYakimaData();
+  </script>
+</body>
+</html>
