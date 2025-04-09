@@ -5,23 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yakima River Flow</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f2f4f8;
       color: #333;
       padding: 2rem;
-      max-width: 800px;
+      max-width: none;
       margin: auto;
     }
     h1 {
       text-align: center;
-      margin-bottom: 0.5rem;
     }
     #currentFlow {
       text-align: center;
       font-size: 1.2rem;
       margin-bottom: 2rem;
+    }
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .chart-box {
+      flex: 1 1 45%;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      min-width: 350px;
     }
     canvas {
       width: 100% !important;
@@ -30,22 +44,37 @@
   </style>
 </head>
 <body>
-  <h1>Yakima River - Streamflow (Past 7 Days)</h1>
+  <h1>Yakima River - Streamflow</h1>
   <div id="currentFlow">Loading current flow...</div>
-  <canvas id="yakimaFlowChart"></canvas>
+
+  <div class="chart-container">
+    <div class="chart-box">
+      <h2 style="text-align:center">Past 7 Days</h2>
+      <canvas id="yakimaFlowChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h2 style="text-align:center">Past Year</h2>
+      <canvas id="yakimaYearChart"></canvas>
+    </div>
+  </div>
 
   <script>
-    async function fetchYakimaData() {
-      const siteId = '12484500'; // Yakima River at Umtanum
+    const siteId = '12484500';
+    let latestDate = null;
+    let latestFlow = null;
+
+    async function fetch7DayData() {
       const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
       const response = await fetch(url);
       const data = await response.json();
-
       const timeSeries = data.value.timeSeries[0].values[0].value;
+
       const labels = timeSeries.map(dp => new Date(dp.dateTime).toLocaleString());
       const values = timeSeries.map(dp => parseFloat(dp.value));
 
-      const latestFlow = values[values.length - 1];
+      latestDate = new Date(timeSeries[timeSeries.length - 1].dateTime).toLocaleDateString();
+      latestFlow = values[values.length - 1];
+
       document.getElementById('currentFlow').textContent = `Current Flow: ${latestFlow.toLocaleString()} CFS`;
 
       new Chart(document.getElementById('yakimaFlowChart'), {
@@ -75,39 +104,102 @@
                 }
               }
             },
-            legend: {
-              display: false
-            }
+            legend: { display: false }
           },
           scales: {
             x: {
-              display: true,
-              title: {
-                display: true,
-                text: 'Date / Time',
-                font: { size: 14 }
-              },
-              ticks: {
-                maxTicksLimit: 10
-              }
+              title: { display: true, text: 'Date / Time', font: { size: 14 } },
+              ticks: { maxTicksLimit: 10 }
             },
             y: {
-              display: true,
-              title: {
-                display: true,
-                text: 'Cubic Feet per Second (CFS)',
-                font: { size: 14 }
-              },
-              grid: {
-                color: '#e0e0e0'
-              }
+              title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
+              grid: { color: '#e0e0e0' }
             }
           }
         }
       });
     }
 
-    fetchYakimaData();
+    async function fetchYearData() {
+      const url = `https://waterservices.usgs.gov/nwis/dv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P365D`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const rawValues = data.value.timeSeries[0].values[0].value;
+
+      const labels = [];
+      const flowValues = [];
+
+      rawValues.forEach((dp) => {
+        const val = parseFloat(dp.value);
+        const dateLabel = new Date(dp.dateTime).toLocaleDateString();
+        if (!isNaN(val) && val > 0) {
+          labels.push(dateLabel);
+          flowValues.push(val);
+        }
+      });
+
+      new Chart(document.getElementById('yakimaYearChart'), {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Daily Avg Flow (CFS)',
+            data: flowValues,
+            borderColor: '#f28e2c',
+            backgroundColor: 'rgba(242, 142, 44, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            annotation: {
+              annotations: latestDate ? {
+                todayLine: {
+                  type: 'line',
+                  xMin: latestDate,
+                  xMax: latestDate,
+                  borderColor: 'red',
+                  borderWidth: 2,
+                  label: {
+                    content: 'Today',
+                    enabled: true,
+                    position: 'start',
+                    backgroundColor: 'rgba(255,255,255,0.8)',
+                    color: '#d62728'
+                  }
+                }
+              } : {}
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(context) {
+                  return `${context.dataset.label}: ${context.formattedValue} CFS`;
+                }
+              }
+            },
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Date', font: { size: 14 } },
+              ticks: { maxTicksLimit: 12 }
+            },
+            y: {
+              title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
+              grid: { color: '#e0e0e0' }
+            }
+          }
+        }
+      });
+    }
+
+    fetch7DayData().then(fetchYearData);
   </script>
 </body>
 </html>
