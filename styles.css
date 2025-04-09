@@ -1,0 +1,40 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f2f4f8;
+    color: #333;
+    padding: 2rem;
+    max-width: none;
+    margin: auto;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #currentFlow {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .chart-box {
+    flex: 1 1 45%;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    min-width: 350px;
+  }
+  
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
