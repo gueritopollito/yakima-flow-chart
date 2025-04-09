@@ -1,5 +1,3 @@
-// Simple example: Yakima River streamflow chart using USGS API and Chart.js
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +7,31 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f4f8;
+      color: #333;
       padding: 2rem;
-      background: #f7f7f7;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    #currentFlow {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
     canvas {
-      max-width: 600px;
-      margin: auto;
+      width: 100% !important;
+      height: auto !important;
     }
   </style>
 </head>
 <body>
   <h1>Yakima River - Streamflow (Past 7 Days)</h1>
+  <div id="currentFlow">Loading current flow...</div>
   <canvas id="yakimaFlowChart"></canvas>
 
   <script>
@@ -31,9 +42,11 @@
       const data = await response.json();
 
       const timeSeries = data.value.timeSeries[0].values[0].value;
-
       const labels = timeSeries.map(dp => new Date(dp.dateTime).toLocaleString());
       const values = timeSeries.map(dp => parseFloat(dp.value));
+
+      const latestFlow = values[values.length - 1];
+      document.getElementById('currentFlow').textContent = `Current Flow: ${latestFlow.toLocaleString()} CFS`;
 
       new Chart(document.getElementById('yakimaFlowChart'), {
         type: 'line',
@@ -42,21 +55,52 @@
           datasets: [{
             label: 'Flow (CFS)',
             data: values,
+            borderColor: '#4e79a7',
+            backgroundColor: 'rgba(78, 121, 167, 0.1)',
             borderWidth: 2,
-            fill: false,
-            tension: 0.3
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0
           }]
         },
         options: {
           responsive: true,
+          plugins: {
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(context) {
+                  return `${context.dataset.label}: ${context.formattedValue} CFS`;
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          },
           scales: {
             x: {
               display: true,
-              title: { display: true, text: 'Date/Time' }
+              title: {
+                display: true,
+                text: 'Date / Time',
+                font: { size: 14 }
+              },
+              ticks: {
+                maxTicksLimit: 10
+              }
             },
             y: {
               display: true,
-              title: { display: true, text: 'Cubic Feet per Second (CFS)' }
+              title: {
+                display: true,
+                text: 'Cubic Feet per Second (CFS)',
+                font: { size: 14 }
+              },
+              grid: {
+                color: '#e0e0e0'
+              }
             }
           }
         }
