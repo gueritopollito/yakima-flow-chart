@@ -21,7 +21,18 @@ const siteData = [
 
   // Cedar River
   { id: '12117500', name: 'Cedar River near Landsburg', lat: 47.382, lng: -121.951, group: 'Cedar' },
-  { id: '12119000', name: 'Cedar River at Renton', lat: 47.489, lng: -122.143, group: 'Cedar' }
+  { id: '12119000', name: 'Cedar River at Renton', lat: 47.489, lng: -122.143, group: 'Cedar' },
+
+  // Stillaguamish River
+  { id: '12167000', name: 'North Fork Stillaguamish River near Arlington', lat: 48.244, lng: -122.125, group: 'Stillaguamish' },
+  { id: '12161000', name: 'South Fork Stillaguamish River near Granite Falls', lat: 48.093, lng: -121.968, group: 'Stillaguamish' },
+  { id: '12166300', name: 'North Fork Stillaguamish River near Oso', lat: 48.285, lng: -121.947, group: 'Stillaguamish' },
+  { id: '12167700', name: 'Stillaguamish River near Silvana', lat: 48.211, lng: -122.261, group: 'Stillaguamish' },
+
+  // Sauk River
+  { id: '12189500', name: 'Sauk River near Darrington', lat: 48.255, lng: -121.567, group: 'Sauk' },
+  { id: '12186000', name: 'Sauk River above White Chuck River near Darrington', lat: 48.224, lng: -121.453, group: 'Sauk' },
+  { id: '12187500', name: 'Sauk River at Darrington', lat: 48.254, lng: -121.608, group: 'Sauk' }
 ];
 
 const groupColors = {
@@ -29,13 +40,16 @@ const groupColors = {
   Skagit: 'blue',
   Skykomish: 'green',
   Snoqualmie: 'orange',
-  Cedar: 'violet'
+  Cedar: 'violet',
+  Stillaguamish: 'grey',
+  Sauk: 'black'
 };
 
 const mapCenter = [47.4, -121.7];
 const mapZoom = 8;
 
-const filterGroups = ['All', 'Yakima', 'Skagit', 'Skykomish', 'Snoqualmie', 'Cedar'];
+const filterGroups = ['All', 'Yakima', 'Skagit', 'Skykomish', 'Snoqualmie', 'Cedar', 'Stillaguamish', 'Sauk'];
+
 
 let siteId = siteData[0].id;
 let siteName = siteData[0].name;
@@ -100,8 +114,12 @@ function handleFilterSelection(group) {
 
   const visible = siteData.filter(site => group === 'All' || site.group === group);
   if (visible.length > 0) {
-    const bounds = L.latLngBounds(visible.map(s => [s.lat, s.lng]));
-    map.fitBounds(bounds);
+    if (visible.length === 1) {
+      map.setView([visible[0].lat, visible[0].lng], 11);
+    } else {
+      const bounds = L.latLngBounds(visible.map(s => [s.lat, s.lng]));
+      map.fitBounds(bounds);
+    }
   }
 }
 
