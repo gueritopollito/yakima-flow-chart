@@ -283,4 +283,4 @@ checkDataAvailability(siteId).then(async hasData => {
   }
 });
 
-handleFilterSelection('Yakima');
+handleFilterSelection('All');
