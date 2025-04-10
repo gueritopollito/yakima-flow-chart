@@ -128,6 +128,7 @@ async function loadReportOnly(group) {
   }
 }
 
+
 async function handleFilterSelection(group) {
   markers.forEach(({ marker, data }) => {
     if (group === 'All' || data.group === group) {
@@ -184,7 +185,38 @@ function hide7DayChart() {
 }
 
 const markers = [];
-const map = L.map('map').setView(mapCenter, mapZoom);
+// Initialize map with scroll zoom disabled
+const map = L.map('map', {
+  center: mapCenter,
+  zoom: mapZoom,
+  scrollWheelZoom: false
+});
+
+// Display a tooltip for scroll zoom hint
+const zoomHint = L.control({ position: 'bottomleft' });
+zoomHint.onAdd = function () {
+  const div = L.DomUtil.create('div', 'zoom-hint');
+  div.innerHTML = '🔍 Hold <strong>Ctrl</strong> (or <strong>⌘</strong>) and scroll to zoom the map';
+  div.style.padding = '4px 8px';
+  div.style.background = 'rgba(255,255,255,0.9)';
+  div.style.border = '1px solid #ccc';
+  div.style.borderRadius = '6px';
+  div.style.fontSize = '0.85rem';
+  div.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+  return div;
+};
+zoomHint.addTo(map);
+
+// Enable zoom on Ctrl/Cmd scroll only
+map.getContainer().addEventListener('wheel', function (e) {
+  if (e.ctrlKey || e.metaKey) {
+    map.scrollWheelZoom.enable();
+  } else {
+    map.scrollWheelZoom.disable();
+  }
+});
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
