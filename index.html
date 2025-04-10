@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yakima River Flow</title>
+  <title>PNW Fly Fishing Flows</title>
+
+  <!-- Google Fonts: Sleek, masculine header -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -19,26 +22,105 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Your JavaScript -->
-  <script src="js/yakima.js" defer></script>
+  <script type="module" src="js/yakima.js" defer></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://geology.com/world/world-map.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: sans-serif;
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.88);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    #currentFlow {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    #filter-buttons {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    #map {
+      height: 400px;
+      margin-bottom: 2rem;
+    }
+
+    #river-summary {
+      flex: 1 1 400px;
+      max-width: 600px;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+      font-size: 1rem;
+    }
+
+    .chart-box {
+      flex: 1 1 400px;
+    }
+
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>PNW Fly Fishing Flows</h1>
-  <div id="currentFlow">Loading current flow...</div>
-  <div id="filter-buttons" style="text-align:center; margin-bottom: 1rem;"></div>
+  <div class="content-wrapper">
 
+    <h1>PNW Fly Fishing Flows</h1>
+    <div id="currentFlow">Loading current flow...</div>
 
+    <!-- Filter Buttons -->
+    <div id="filter-buttons"></div>
 
-  <div id="map" style="height: 400px; margin-bottom: 2rem;"></div>
+    <!-- Map -->
+    <div id="map"></div>
 
-  <div class="chart-container">
-    <div class="chart-box">
-      <h2 id="sevenDayTitle" style="text-align:center">Past 7 Days</h2>
-      <canvas id="yakimaFlowChart"></canvas>
+    <!-- Summary + 7-Day Chart Side by Side -->
+    <div class="chart-container">
+      <div id="river-summary"></div>
+
+      <div id="yakimaFlowChartContainer" class="chart-box">
+        <div id="sevenDayTitle" style="text-align:center"></div>
+        <canvas id="yakimaFlowChart"></canvas>
+      </div>
     </div>
-    <div class="chart-box">
-      <h2 id="yearTitle" style="text-align:center">Past Year</h2>
-      <canvas id="yakimaYearChart"></canvas>
+
+    <!-- Year Chart Full Width -->
+    <div class="chart-container">
+      <div class="chart-box">
+        <h2 id="yearTitle" style="text-align:center">Past Year</h2>
+        <canvas id="yakimaYearChart"></canvas>
+      </div>
     </div>
+
   </div>
 </body>
 </html>

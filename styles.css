@@ -1,29 +1,43 @@
+/* Topographic-style background for the whole page */
 body {
-    font-family: sans-serif;
-    margin: 0 auto;
-    max-width: 1000px;
-    padding: 1rem;
-    background-color: #f9f9f9;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-  
-  #currentFlow {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .chart-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-  }
-  
-  .chart-box {
-    flex: 1 1 48%;
-  }
+  margin: 0;
+  padding: 0;
+  background: url('https://www.transparenttextures.com/patterns/cartographer.png');
+  background-color: #f0f0f0;
+  background-size: auto;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  font-family: sans-serif;
+}
+
+/* Optional: wrapper for content to sit on a translucent layer */
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+#currentFlow {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.chart-box {
+  flex: 1 1 48%;
+}

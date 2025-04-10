@@ -1,74 +1,37 @@
-const siteData = [
-  // Yakima River system
-  { id: '12484500', name: 'Umtanum near Ellensburg', lat: 46.884, lng: -120.488, group: 'Yakima' },
-  { id: '12479000', name: 'Cle Elum River near Roslyn', lat: 47.227, lng: -121.030, group: 'Yakima' },
-  { id: '12478500', name: 'Yakima River at Cle Elum', lat: 47.195, lng: -120.939, group: 'Yakima' },
-  { id: '12479600', name: 'Yakima River near South Cle Elum', lat: 47.181, lng: -120.944, group: 'Yakima' },
+import { siteData, groupColors } from './siteData.js';
+import {
+  getCurrentFlow,
+  checkDataAvailability,
+  fetch7DayData,
+  fetchYearData
+} from './usgs.js';
 
-  // Skagit River
-  { id: '12181000', name: 'Skagit River at Marblemount', lat: 48.539, lng: -121.444, group: 'Skagit' },
-  { id: '12194000', name: 'Skagit River near Concrete', lat: 48.528, lng: -121.746, group: 'Skagit' },
-  { id: '12200500', name: 'Skagit River near Mount Vernon', lat: 48.416, lng: -122.334, group: 'Skagit' },
-
-  // Skykomish River
-  { id: '12134500', name: 'Skykomish River near Gold Bar', lat: 47.847, lng: -121.679, group: 'Skykomish' },
-
-  // Snoqualmie River and forks
-  { id: '12144000', name: 'South Fork Snoqualmie at North Bend', lat: 47.495, lng: -121.785, group: 'Snoqualmie' },
-  { id: '12141300', name: 'Middle Fork Snoqualmie near Tanner', lat: 47.472, lng: -121.641, group: 'Snoqualmie' },
-  { id: '12142000', name: 'North Fork Snoqualmie near Snoqualmie Falls', lat: 47.571, lng: -121.725, group: 'Snoqualmie' },
-  { id: '12149000', name: 'Snoqualmie River near Carnation', lat: 47.644, lng: -121.914, group: 'Snoqualmie' },
-
-  // Cedar River
-  { id: '12117500', name: 'Cedar River near Landsburg', lat: 47.382, lng: -121.951, group: 'Cedar' },
-  { id: '12119000', name: 'Cedar River at Renton', lat: 47.489, lng: -122.143, group: 'Cedar' },
-
-  // Stillaguamish River
-  { id: '12167000', name: 'North Fork Stillaguamish River near Arlington', lat: 48.244, lng: -122.125, group: 'Stillaguamish' },
-  { id: '12161000', name: 'South Fork Stillaguamish River near Granite Falls', lat: 48.093, lng: -121.968, group: 'Stillaguamish' },
-  { id: '12166300', name: 'North Fork Stillaguamish River near Oso', lat: 48.285, lng: -121.947, group: 'Stillaguamish' },
-  { id: '12167700', name: 'Stillaguamish River near Silvana', lat: 48.211, lng: -122.261, group: 'Stillaguamish' },
-
-  // Sauk River
-  { id: '12189500', name: 'Sauk River near Darrington', lat: 48.255, lng: -121.567, group: 'Sauk' },
-  { id: '12186000', name: 'Sauk River above White Chuck River near Darrington', lat: 48.224, lng: -121.453, group: 'Sauk' },
-  { id: '12187500', name: 'Sauk River at Darrington', lat: 48.254, lng: -121.608, group: 'Sauk' },
-
-  // Klickitat River
-  { id: '14113000', name: 'Klickitat River near Pitt', lat: 45.931, lng: -121.096, group: 'Klickitat' },
-
-  // Methow River
-  { id: '12449950', name: 'Methow River near Pateros', lat: 48.050, lng: -119.901, group: 'Methow' },
-  { id: '12448500', name: 'Methow River at Twisp', lat: 48.364, lng: -120.121, group: 'Methow' },
-
-  // Olympic Peninsula
-  { id: '12045500', name: 'Elwha River at McDonald Bridge near Port Angeles', lat: 48.052, lng: -123.558, group: 'Olympic' },
-  { id: '12048000', name: 'Dungeness River near Sequim', lat: 48.101, lng: -123.146, group: 'Olympic' },
-  { id: '12082500', name: 'Nisqually River near National', lat: 46.743, lng: -122.003, group: 'Olympic' }
-];
-
-const groupColors = {
-  Yakima: 'red',
-  Skagit: 'blue',
-  Skykomish: 'green',
-  Snoqualmie: 'orange',
-  Cedar: 'violet',
-  Stillaguamish: 'grey',
-  Sauk: 'black',
-  Klickitat: 'yellow',
-  Methow: 'violet',
-  Olympic: 'red'
-};
+async function loadFishingReports() {
+  const res = await fetch('js/fishing_reports.json');
+  return await res.json();
+}
 
 const mapCenter = [47.4, -121.7];
 const mapZoom = 8;
-
 const filterGroups = ['All', 'Yakima', 'Skagit', 'Skykomish', 'Snoqualmie', 'Cedar', 'Stillaguamish', 'Sauk', 'Klickitat', 'Methow', 'Olympic'];
 
 let siteId = siteData[0].id;
 let siteName = siteData[0].name;
 let flowChart = null;
 let yearChart = null;
+
+function updateCurrentStats({ flow, waterTemp, airTemp }, name) {
+  const flowText = flow ? `${Math.round(flow).toLocaleString()} CFS` : 'Unavailable';
+  const wtF = waterTemp ? `${waterTemp.toFixed(1)}°F` : 'N/A';
+  const wtC = waterTemp ? `${((waterTemp - 32) * 5 / 9).toFixed(1)}°C` : 'N/A';
+  const atF = airTemp ? `${airTemp.toFixed(1)}°F` : 'N/A';
+  const atC = airTemp ? `${((airTemp - 32) * 5 / 9).toFixed(1)}°C` : 'N/A';
+  document.getElementById('currentFlow').innerHTML = `
+    <strong>${name}</strong><br>
+    Flow: ${flowText}<br>
+    Water Temp: ${wtF} / ${wtC}<br>
+    Air Temp: ${atF} / ${atC}`;
+}
 
 function createFilterButtons(containerId, onFilterSelect) {
   const container = document.getElementById(containerId);
@@ -79,45 +42,93 @@ function createFilterButtons(containerId, onFilterSelect) {
     btn.textContent = group;
     btn.classList.add('filter-button');
     btn.dataset.group = group;
-    btn.style.backgroundColor = group === 'All' ? '#333' : `${groupColors[group] || '#555'}20`;
-    btn.style.color = group === 'All' ? '#fff' : groupColors[group] || '#000';
-    btn.style.border = `2px solid ${group === 'All' ? '#555' : groupColors[group]}`;
+
+    btn.style.backgroundColor = '#fff';
+    btn.style.color = group === 'Klickitat' ? '#000' : (groupColors[group] || '#333');
+    btn.style.border = `2px solid ${groupColors[group] || '#555'}`;
     btn.style.borderRadius = '999px';
     btn.style.margin = '0.25rem';
     btn.style.padding = '0.5rem 1rem';
     btn.style.cursor = 'pointer';
-    btn.style.fontWeight = '200';
+    btn.style.fontWeight = '500';
     btn.style.transition = 'all 0.2s ease-in-out';
-    btn.style.boxShadow = group === 'All' ? '0 0 0' : 'none';
+    btn.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
+    btn.style.fontSize = '0.95rem';
 
     btn.onmouseenter = () => {
-      btn.style.filter = 'brightness(1.1)';
+      btn.style.backgroundColor = `${groupColors[group] || '#ccc'}22`;
     };
     btn.onmouseleave = () => {
-      btn.style.filter = activeButton === btn ? 'none' : 'brightness(0.9)';
+      if (btn !== activeButton) {
+        btn.style.backgroundColor = '#fff';
+      }
     };
 
     btn.onclick = () => {
       if (activeButton) {
-        activeButton.style.filter = 'brightness(0.9)';
+        activeButton.style.backgroundColor = '#fff';
         activeButton.style.outline = 'none';
-        activeButton.style.boxShadow = 'none';
+        activeButton.style.boxShadow = '0 1px 2px rgba(0,0,0,0.1)';
       }
-      btn.style.filter = 'none';
-      btn.style.outline = '2px solid #444';
+      btn.style.backgroundColor = `${groupColors[group] || '#ccc'}11`;
+      btn.style.outline = `2px solid #444`;
       btn.style.boxShadow = `0 0 8px ${groupColors[group]}`;
       activeButton = btn;
       onFilterSelect(group);
     };
 
-    btn.style.filter = group === 'All' ? 'none' : 'brightness(0.9)';
-    if (group === 'All') activeButton = btn;
+    if (group === 'All') {
+      btn.style.backgroundColor = `${groupColors[group] || '#ccc'}11`;
+      btn.style.outline = '2px solid #444';
+      btn.style.boxShadow = `0 0 8px ${groupColors[group]}`;
+      activeButton = btn;
+    }
+
     container.appendChild(btn);
   });
-};
+}
 
+function selectFilterButtonForGroup(group) {
+  const buttons = document.querySelectorAll('#filter-buttons .filter-button');
+  buttons.forEach(btn => {
+    const isMatch = btn.dataset.group === group;
+    btn.style.backgroundColor = isMatch ? `${groupColors[group] || '#ccc'}11` : '#fff';
+    btn.style.outline = isMatch ? '2px solid #444' : 'none';
+    btn.style.boxShadow = isMatch ? `0 0 8px ${groupColors[group]}` : '0 1px 2px rgba(0,0,0,0.1)';
+  });
+}
 
-function handleFilterSelection(group) {
+async function loadReportOnly(group) {
+  const summaryContainer = document.getElementById('river-summary');
+  try {
+    const reports = await loadFishingReports();
+    const report = reports[group];
+    if (report) {
+      summaryContainer.innerHTML = `
+        <h3>Fishing Report: ${report.river} River</h3>
+        <p style="white-space: pre-line; text-align: left;">${report.summary}</p>
+        <p style="font-size: 0.9rem; text-align: left;">
+          <strong>Sources:</strong><br>
+          ${report.sources.map(s => `<a href="${s.url}" target="_blank">${s.title}</a>`).join('<br>')}
+        </p>
+        <p style="font-size: 0.8rem; text-align: right;">Last updated: ${report.lastUpdated}</p>
+      `;
+    } else {
+      summaryContainer.innerHTML = `
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
+          <p style="font-size: 1.2rem; font-weight: 300; padding: 2rem;">
+            No fishing report currently available for this river.
+          </p>
+        </div>
+      `;
+    }
+  } catch (error) {
+    summaryContainer.textContent = 'Error loading fishing report.';
+    console.error('Error loading report:', error);
+  }
+}
+
+async function handleFilterSelection(group) {
   markers.forEach(({ marker, data }) => {
     if (group === 'All' || data.group === group) {
       marker.addTo(map);
@@ -135,199 +146,109 @@ function handleFilterSelection(group) {
       map.fitBounds(bounds);
     }
   }
+
+  const summaryContainer = document.getElementById('river-summary');
+  if (group === 'All') {
+    summaryContainer.innerHTML = `
+      <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
+        <p style="font-size: 1.2rem; font-weight: 300; padding: 2rem;">
+          Select a River at the top of the page to view a fishing report summary from local fly shops and guide services.
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  await loadReportOnly(group);
+
+  if (group !== 'All' && visible.length > 0) {
+    const defaultSite = visible[0];
+    siteId = defaultSite.id;
+    siteName = defaultSite.name;
+    const readings = await getCurrentFlow(siteId);
+    updateCurrentStats(readings, siteName);
+    const hasData = await checkDataAvailability(siteId);
+    if (hasData) {
+      flowChart = await fetch7DayData(siteId, siteName, flowChart);
+      yearChart = await fetchYearData(siteId, siteName, yearChart);
+    } else {
+      hide7DayChart();
+      yearChart = await fetchYearData(siteId, siteName, yearChart);
+    }
+  }
 }
-
-const markers = [];
-let map = L.map('map').setView(mapCenter, mapZoom);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-
-const attributionImgs = document.querySelectorAll('.leaflet-control-attribution img');
-attributionImgs.forEach(img => img.remove());
-
-
-
-siteData.forEach(site => {
-  const icon = new L.Icon({
-    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${groupColors[site.group] || 'grey'}.png`,
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-  const marker = L.marker([site.lat, site.lng], { icon }).addTo(map);
-  marker.bindPopup(`${site.name}`);
-  marker.on('click', () => {
-    siteId = site.id;
-    siteName = site.name;
-    checkDataAvailability(siteId).then(hasData => {
-      if (hasData) {
-        fetch7DayData().then(fetchYearData);
-      } else {
-        hide7DayChart();
-        fetchYearData();
-      }
-    });
-  });
-  markers.push({ marker, data: site });
-});
-
-createFilterButtons('filter-buttons', handleFilterSelection);
 
 function hide7DayChart() {
   document.getElementById('yakimaFlowChart').style.display = 'none';
   document.getElementById('sevenDayTitle').textContent = `Past 7 Days – No recent data for ${siteName}`;
 }
 
-function show7DayChart() {
-  document.getElementById('yakimaFlowChart').style.display = 'block';
-}
+const markers = [];
+const map = L.map('map').setView(mapCenter, mapZoom);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-async function checkDataAvailability(siteId) {
-  const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
-  const response = await fetch(url);
-  const data = await response.json();
-  return data.value.timeSeries.length > 0;
-}
+document.querySelectorAll('.leaflet-control-attribution img').forEach(img => img.remove());
 
-async function fetch7DayData() {
-  const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;
-  const response = await fetch(url);
-  const data = await response.json();
-  const timeSeries = data.value.timeSeries[0].values[0].value;
+siteData.forEach(async site => {
+  const icon = new L.Icon({
+    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${groupColors[site.group] || 'grey'}.png`,
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
 
-  const labels = timeSeries.map(dp => new Date(dp.dateTime).toLocaleString());
-  const values = timeSeries.map(dp => parseFloat(dp.value));
+  const marker = L.marker([site.lat, site.lng], { icon }).addTo(map);
+  marker.bindPopup(`${site.name}`);
 
-  const latestFlow = values[values.length - 1];
-  document.getElementById('currentFlow').textContent = `Current Flow: ${latestFlow.toLocaleString()} CFS`;
-  document.getElementById('sevenDayTitle').textContent = `Past 7 Days – ${siteName}`;
-  show7DayChart();
+  const flowData = await getCurrentFlow(site.id);
+  const tooltipText = flowData.flow
+    ? `${site.name}<br>💧 Flow: ${Math.round(flowData.flow).toLocaleString()} CFS`
+    : `${site.name}<br>💧 Flow: Unavailable`;
 
-  if (flowChart) {
-    flowChart.data.labels = labels;
-    flowChart.data.datasets[0].data = values;
-    flowChart.update();
-  } else {
-    flowChart = new Chart(document.getElementById('yakimaFlowChart'), {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Flow (CFS)',
-          data: values,
-          borderColor: '#4e79a7',
-          backgroundColor: 'rgba(78, 121, 167, 0.1)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.3,
-          pointRadius: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-            callbacks: {
-              label: context => `${context.dataset.label}: ${context.formattedValue} CFS`
-            }
-          },
-          legend: { display: false }
-        },
-        scales: {
-          x: {
-            title: { display: true, text: 'Date / Time', font: { size: 14 } },
-            ticks: { maxTicksLimit: 10 }
-          },
-          y: {
-            title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
-            grid: { color: '#e0e0e0' }
-          }
-        }
-      }
-    });
-  }
-}
+  marker.bindTooltip(tooltipText, {
+    direction: 'top', offset: [0, -10], opacity: 0.95
+  });
 
-async function fetchYearData() {
-  const url = `https://waterservices.usgs.gov/nwis/dv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P365D`;
-  const response = await fetch(url);
-  const data = await response.json();
-  const rawValues = data.value.timeSeries[0].values[0].value;
-
-  const labels = [];
-  const flowValues = [];
-
-  rawValues.forEach(dp => {
-    const val = parseFloat(dp.value);
-    const dateISO = dp.dateTime.slice(0, 10);
-    if (!isNaN(val) && val > 0) {
-      labels.push(dateISO);
-      flowValues.push(val);
+  marker.on('click', async () => {
+    siteId = site.id;
+    siteName = site.name;
+    selectFilterButtonForGroup(site.group);
+    await loadReportOnly(site.group);
+    const readings = await getCurrentFlow(siteId);
+    updateCurrentStats(readings, siteName);
+    const hasData = await checkDataAvailability(siteId);
+    if (hasData) {
+      flowChart = await fetch7DayData(siteId, siteName, flowChart);
+      yearChart = await fetchYearData(siteId, siteName, yearChart);
+    } else {
+      hide7DayChart();
+      yearChart = await fetchYearData(siteId, siteName, yearChart);
     }
   });
 
-  document.getElementById('yearTitle').textContent = `Past Year – ${siteName}`;
+  markers.push({ marker, data: site });
+});
 
-  if (yearChart) {
-    yearChart.data.labels = labels;
-    yearChart.data.datasets[0].data = flowValues;
-    yearChart.update();
-  } else {
-    yearChart = new Chart(document.getElementById('yakimaYearChart'), {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Daily Avg Flow (CFS)',
-            data: flowValues,
-            borderColor: '#f28e2c',
-            backgroundColor: 'rgba(242, 142, 44, 0.1)',
-            borderWidth: 2,
-            fill: true,
-            tension: 0.3,
-            pointRadius: 0
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-            callbacks: {
-              label: context => `${context.dataset.label}: ${context.formattedValue} CFS`
-            }
-          },
-          legend: { display: true }
-        },
-        scales: {
-          x: {
-            title: { display: true, text: 'Date', font: { size: 14 } },
-            ticks: { maxTicksLimit: 12 }
-          },
-          y: {
-            title: { display: true, text: 'Cubic Feet per Second (CFS)', font: { size: 14 } },
-            grid: { color: '#e0e0e0' }
-          }
-        }
-      }
-    });
-  }
-}
+createFilterButtons('filter-buttons', handleFilterSelection);
 
-// Kick off default load
-checkDataAvailability(siteId).then(hasData => {
+checkDataAvailability(siteId).then(async hasData => {
+  const readings = await getCurrentFlow(siteId);
+  updateCurrentStats(readings, siteName);
+
   if (hasData) {
-    fetch7DayData().then(fetchYearData);
+    fetch7DayData(siteId, siteName, flowChart).then(fc => {
+      if (!flowChart) flowChart = fc;
+      return fetchYearData(siteId, siteName, yearChart);
+    }).then(yc => {
+      if (!yearChart) yearChart = yc;
+    });
   } else {
     hide7DayChart();
-    fetchYearData();
+    fetchYearData(siteId, siteName, yearChart).then(yc => {
+      if (!yearChart) yearChart = yc;
+    });
   }
 });
+
+handleFilterSelection('Yakima');
