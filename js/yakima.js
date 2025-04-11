@@ -187,7 +187,7 @@ function createFilterButtons(containerId, onFilterSelect, stateFilter = null) {
   
     btn.onclick = () => {
       if (activeButton) resetButtonStyle(activeButton);
-      btn.style = buttonStyle(`${markerColor}11`, textColor, markerColor, true);
+      btn.style = buttonStyle(`${markerColor}11`, '#000', markerColor, true);
       activeButton = btn;
       updateURLParams({ group });
       onFilterSelect(group);
