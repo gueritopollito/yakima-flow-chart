@@ -54,12 +54,15 @@ export async function getCurrentFlow(siteId) {
     const latestFlow = values[values.length - 1];
     const safety = getWadingSafety(latestFlow);
   
-    document.getElementById('sevenDayTitle').innerHTML = `
-      <div style="text-align: center;">
-        <h2 style="margin: 0;">River Flow – Past 7 Days</h2>
-        <div style="font-weight: 300;">${siteName} – <span style="color: ${safety.includes('Wading') ? 'green' : safety.includes('Ideal') ? 'blue' : safety.includes('High') ? 'orange' : 'red'}">${safety}</span></div>
-      </div>
-    `;
+    if (siteName && siteName.trim()) {
+        document.getElementById('sevenDayTitle').innerHTML = `
+          <div style="text-align: center;">
+            <h2 style="margin: 0;">River Flow – Past 7 Days</h2>
+            <div style="font-weight: 300;">${siteName} – <span style="color: ${safety.includes('Wading') ? 'green' : safety.includes('Ideal') ? 'blue' : safety.includes('High') ? 'orange' : 'red'}">${safety}</span></div>
+          </div>
+        `;
+      }
+      
     document.getElementById('yakimaFlowChart').style.display = 'block';
   
     const chartContainer = document.getElementById('yakimaFlowChartContainer');
@@ -155,7 +158,10 @@ export async function getCurrentFlow(siteId) {
       }
     });
   
-    document.getElementById('yearTitle').textContent = `Past Year – ${siteName}`;
+    document.getElementById('yearTitle').textContent = `Past Year – ${siteName}`;if (siteName && siteName.trim()) {
+        document.getElementById('yearTitle').textContent = `Past Year – ${siteName}`;
+      }
+      
   
     if (yearChart) {
       yearChart.data.labels = labels;

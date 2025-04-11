@@ -1,43 +1,58 @@
-/* Topographic-style background for the whole page */
-body {
-  margin: 0;
-  padding: 0;
-  background: url('https://www.transparenttextures.com/patterns/cartographer.png');
-  background-color: #f0f0f0;
-  background-size: auto;
-  background-attachment: fixed;
-  background-repeat: repeat;
-  font-family: sans-serif;
+/* Desktop layout: side-by-side */
+.main-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-/* Optional: wrapper for content to sit on a translucent layer */
-.content-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+.left-side,
+.right-side {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-h1 {
+.logo-header {
   text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-#currentFlow {
-  text-align: center;
-  font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.chart-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
+.site-logo {
+  max-width: 180px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
+.site-logo:hover {
+  transform: scale(1.02);
+}
+
+
+#map {
+  height: 400px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#river-summary,
 .chart-box {
-  flex: 1 1 48%;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+}
+
+/* Mobile-friendly layout: stack everything vertically */
+@media (max-width: 1200px) {
+  .main-grid {
+    flex-direction: column;
+  }
+
+  .left-side,
+  .right-side {
+    flex: 1 1 100%;
+  }
 }
