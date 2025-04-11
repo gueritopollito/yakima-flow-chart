@@ -22,6 +22,15 @@ const stateNames = {
   WA: 'Washington', 
 };
 
+const stateColors = {
+  WA: '#0c4f3e',
+  OR: '#5c9e88',
+  ID: '#e17c58',
+  MT: '#db9e37',
+  CO: '#e67638'
+};
+
+
 import {
   getCurrentFlow,
   checkDataAvailability,
@@ -162,16 +171,20 @@ function createFilterButtons(containerId, onFilterSelect, stateFilter = null) {
 
   groups.sort().forEach(group => {
     const btn = document.createElement('button');
-    const markerColor = groupColors[group] || '#555';
-
-    // Make yellow marker buttons have black text
-    const textColor = markerColor === 'yellow' ? '#000' : markerColor;
-
+  
+    // Get the state color for the group
+    const site = siteData.find(s => s.group === group);
+    const markerColor = site ? stateColors[site.state] : '#555';
+  
+    // Use contrasting text color for accessibility
+    const isLight = isLightColor(markerColor);
+    const textColor = isLight ? '#000' : '#fff';
+  
     btn.textContent = group;
     btn.classList.add('filter-button');
     btn.dataset.group = group;
-    btn.style = buttonStyle('#fff', textColor, markerColor);
-
+    btn.style = buttonStyle(markerColor, textColor, markerColor);
+  
     btn.onclick = () => {
       if (activeButton) resetButtonStyle(activeButton);
       btn.style = buttonStyle(`${markerColor}11`, textColor, markerColor, true);
@@ -179,9 +192,19 @@ function createFilterButtons(containerId, onFilterSelect, stateFilter = null) {
       updateURLParams({ group });
       onFilterSelect(group);
     };
-
+  
     container.appendChild(btn);
   });
+  
+  function isLightColor(hex) {
+    if (!hex || hex.length < 7) return false;
+    const r = parseInt(hex.substr(1, 2), 16);
+    const g = parseInt(hex.substr(3, 2), 16);
+    const b = parseInt(hex.substr(5, 2), 16);
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    return brightness > 180; // Adjust threshold if needed
+  }
+  
 
   function buttonStyle(bg, text, border, active = false) {
     return `
@@ -201,10 +224,12 @@ function createFilterButtons(containerId, onFilterSelect, stateFilter = null) {
   }
 
   function resetButtonStyle(btn) {
-    const color = groupColors[btn.dataset.group] || '#555';
-    const textColor = color === 'yellow' ? '#000' : color;
-    btn.style = buttonStyle('#fff', textColor, color);
+    const site = siteData.find(s => s.group === btn.dataset.group);
+    const color = site ? stateColors[site.state] : '#555';
+    const textColor = isLightColor(color) ? '#000' : '#fff';
+    btn.style = buttonStyle(color, textColor, color);
   }
+  
 }
 
 
@@ -375,10 +400,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 siteData.forEach(async site => {
   const icon = new L.Icon({
-    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${groupColors[site.group] || 'grey'}.png`,
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+    iconUrl: `/images/${site.state.toLowerCase()}.svg`,
+    iconSize: [30, 48],
+    iconAnchor: [15, 48],
+    popupAnchor: [0, -48],
+    shadowUrl: null,
+    shadowSize: null
   });
+  
 
   const marker = L.marker([site.lat, site.lng], { icon }).addTo(map);
   marker.bindPopup(`${site.name}`);
