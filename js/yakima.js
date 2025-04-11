@@ -400,7 +400,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 siteData.forEach(async site => {
   const icon = new L.Icon({
-    iconUrl: `/images/${site.state.toLowerCase()}.svg`,
+    iconUrl: `images/${site.state.toLowerCase()}.svg`, 
     iconSize: [30, 48],
     iconAnchor: [15, 48],
     popupAnchor: [0, -48],
