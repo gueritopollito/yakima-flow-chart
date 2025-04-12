@@ -237,11 +237,22 @@ function selectFilterButtonForGroup(group) {
   const buttons = document.querySelectorAll('#filter-buttons .filter-button');
   buttons.forEach(btn => {
     const isMatch = btn.dataset.group === group;
-    btn.style.backgroundColor = isMatch ? `${groupColors[group] || '#ccc'}11` : '#fff';
-    btn.style.outline = isMatch ? '2px solid #444' : 'none';
-    btn.style.boxShadow = isMatch ? `0 0 8px ${groupColors[group]}` : '0 1px 2px rgba(0,0,0,0.1)';
+
+    const site = siteData.find(s => s.group === btn.dataset.group);
+    const color = site ? stateColors[site.state] : '#555';
+    const isYellowish = color.toLowerCase() === '#f4b93a';
+    const textColor = isYellowish ? '#000' : color;
+
+    if (isMatch) {
+      // Selected button
+      btn.style = buttonStyle(`${color}11`, '#000', color, true); // force text color to black
+    } else {
+      // Default button style
+      btn.style = buttonStyle('#fff', textColor, color);
+    }
   });
 }
+
 
 async function loadReportOnly(group) {
   const summaryContainer = document.getElementById('river-summary');
