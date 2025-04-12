@@ -176,6 +176,16 @@ export const siteData = [
     { id: '09038500', name: 'Williams Fork below Williams Fork Reservoir', lat: 40.022, lng: -106.339, group: 'Williams Fork', state: 'CO' }
 ];
 
+
+
+export const stateColors = {
+    WA: '#0c4f3e',
+    OR: '#237972',
+    ID: '#E17C58',
+    MT: '#f4b93a',
+    CO: '#042413'
+  };
+
 export const groupColors = {
     // WA
     Yakima: 'red',
