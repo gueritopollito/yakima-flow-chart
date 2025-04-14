@@ -285,24 +285,35 @@ async function loadReportOnly(group) {
 }
 
 async function handleFilterSelection(group) {
+  // Filter visible sites in the group
+  const visible = siteData.filter(site => group === 'All' || site.group === group);
+
+  const sitesWithData = [];
+  for (const site of visible) {
+    const hasData = await checkDataAvailability(site.id);
+    if (hasData) sitesWithData.push(site);
+  }
+
+  // Update map markers
   markers.forEach(({ marker, data }) => {
-    if (group === 'All' || data.group === group) {
+    if (sitesWithData.some(s => s.id === data.id)) {
       marker.addTo(map);
     } else {
       map.removeLayer(marker);
     }
   });
 
-  const visible = siteData.filter(site => group === 'All' || site.group === group);
-  if (visible.length > 0) {
-    if (visible.length === 1) {
-      map.setView([visible[0].lat, visible[0].lng], 11);
+  // Fit map to bounds
+  if (sitesWithData.length > 0) {
+    if (sitesWithData.length === 1) {
+      map.setView([sitesWithData[0].lat, sitesWithData[0].lng], 11);
     } else {
-      const bounds = L.latLngBounds(visible.map(s => [s.lat, s.lng]));
+      const bounds = L.latLngBounds(sitesWithData.map(s => [s.lat, s.lng]));
       map.fitBounds(bounds);
     }
   }
 
+  // If "All" is selected, show default message and exit
   if (group === 'All') {
     document.getElementById('river-summary').innerHTML = `
       <div style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
@@ -311,38 +322,27 @@ async function handleFilterSelection(group) {
         </p>
       </div>
     `;
-  
-    document.getElementById('sevenDayTitle').textContent = 'Past 7 Days';
-    document.getElementById('yakimaFlowChart').style.display = 'none';
-    document.getElementById('sevenDayPrompt').style.display = 'block';
-  
-    document.getElementById('yearTitle').textContent = 'Past Year';
-    document.getElementById('yakimaYearChart').style.display = 'none';
-    document.getElementById('yearPrompt').style.display = 'block';
-  
+    showChartPlaceholders();
     return;
   }
-  
 
   await loadReportOnly(group);
 
-  if (visible.length > 0) {
-    const defaultSite = visible[0];
+  // Show charts only for the first valid site with data
+  if (sitesWithData.length > 0) {
+    const defaultSite = sitesWithData[0];
     siteId = defaultSite.id;
     siteName = defaultSite.name;
     const readings = await getCurrentFlow(siteId);
     updateCurrentStats(readings, siteName);
-    const hasData = await checkDataAvailability(siteId);
-    if (hasData) {
-      if (hasData) {
-        flowChart = await fetch7DayData(siteId, siteName, flowChart);
-        yearChart = await fetchYearData(siteId, siteName, yearChart);
-        showCharts(); 
-      }
-      
-    }
+    flowChart = await fetch7DayData(siteId, siteName, flowChart);
+    yearChart = await fetchYearData(siteId, siteName, yearChart);
+    showCharts();
+  } else {
+    showChartPlaceholders();
   }
 }
+
 
 
 function showChartPlaceholders() {
@@ -373,6 +373,37 @@ function hide7DayChart() {
   // Either show a generic title or clear it entirely
   document.getElementById('sevenDayTitle').textContent = '';
 }
+
+async function updateChartsForSite(site) {
+  // Update global site variables
+  siteId = site.id;
+  siteName = site.name;
+
+
+updateURLParams({ state: site.state, group: site.group, site: site.id });
+
+
+  // Update the filter button UI to highlight the current site's group
+  selectFilterButtonForGroup(site.group);
+
+  // Load the fishing report for the site's group
+  await loadReportOnly(site.group);
+
+  // Retrieve and update current flow data/statistics
+  const readings = await getCurrentFlow(site.id);
+  updateCurrentStats(readings, site.name);
+
+  // Check data availability and update the charts accordingly
+  if (await checkDataAvailability(site.id)) {
+    flowChart = await fetch7DayData(site.id, site.name, flowChart);
+    yearChart = await fetchYearData(site.id, site.name, yearChart);
+  } else {
+    // If no 7-day data, hide the flow chart and update the year chart only
+    hide7DayChart();
+    yearChart = await fetchYearData(site.id, site.name, yearChart);
+  }
+}
+
 
 
 const markers = [];
@@ -409,52 +440,49 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-siteData.forEach(async site => {
-  const icon = new L.Icon({
-    iconUrl: `images/${site.state.toLowerCase()}.svg`, 
-    iconSize: [30, 48],
-    iconAnchor: [15, 48],
-    popupAnchor: [0, -48],
-    shadowUrl: null,
-    shadowSize: null
-  });
-  
+async function addValidMarkers() {
+  for (const site of siteData) {
+    const hasData = await checkDataAvailability(site.id);
+    if (!hasData) continue; // Skip sites with no 7-day data
 
-  const marker = L.marker([site.lat, site.lng], { icon }).addTo(map);
-  marker.bindPopup(`${site.name}`);
+    const icon = new L.Icon({
+      iconUrl: `images/${site.state.toLowerCase()}.svg`,
+      iconSize: [30, 48],
+      iconAnchor: [15, 48],
+      popupAnchor: [0, -48],
+      shadowUrl: null,
+      shadowSize: null
+    });
 
-  const flowData = await getCurrentFlow(site.id);
-  const tooltipText = flowData.flow
-    ? `${site.name}<br>💧 Flow: ${Math.round(flowData.flow).toLocaleString()} CFS`
-    : `${site.name}<br>💧 Flow: Unavailable`;
+    const marker = L.marker([site.lat, site.lng], { icon }).addTo(map);
+    marker.bindPopup(`${site.name}`);
 
-  marker.bindTooltip(tooltipText, {
-    direction: 'top', offset: [0, -10], opacity: 0.95
-  });
+    const flowData = await getCurrentFlow(site.id);
+    const tooltipText = flowData.flow
+      ? `${site.name}<br>💧 Flow: ${Math.round(flowData.flow).toLocaleString()} CFS`
+      : `${site.name}<br>💧 Flow: Unavailable`;
 
-  marker.on('click', async () => {
-    siteId = site.id;
-    siteName = site.name;
-    selectFilterButtonForGroup(site.group);
-    await loadReportOnly(site.group);
-    const readings = await getCurrentFlow(siteId);
-    updateCurrentStats(readings, siteName);
-    const hasData = await checkDataAvailability(siteId);
-    if (hasData) {
-      flowChart = await fetch7DayData(siteId, siteName, flowChart);
-      yearChart = await fetchYearData(siteId, siteName, yearChart);
-    } else {
-      hide7DayChart();
-      yearChart = await fetchYearData(siteId, siteName, yearChart);
-    }
-  });
+    marker.bindTooltip(tooltipText, {
+      direction: 'top', offset: [0, -10], opacity: 0.95
+    });
 
-  markers.push({ marker, data: site });
-});
+    marker.on('click', async () => {
+      await updateChartsForSite(site);
+    });
+    
+
+    markers.push({ marker, data: site });
+  }
+}
+
 
 // Initialize buttons
-createStateButtons('state-buttons');
-createFilterButtons('filter-buttons', handleFilterSelection);
+(async () => {
+  await addValidMarkers();
+  createStateButtons('state-buttons');
+  createFilterButtons('filter-buttons', handleFilterSelection);
+  handleFilterSelection('All');
+})();
 
 // Load initial site data
 checkDataAvailability(siteId).then(async hasData => {
@@ -469,28 +497,43 @@ checkDataAvailability(siteId).then(async hasData => {
   }
 });
 
-handleFilterSelection('All');
+const params = new URLSearchParams(window.location.search);
+if (!params.has('state') && !params.has('group') && !params.has('site')) {
+  handleFilterSelection('All');
+}
+
 
 function applyFiltersFromURL() {
   const params = new URLSearchParams(window.location.search);
   const state = params.get('state');
   const group = params.get('group');
+  const site = params.get('site');
 
+  // If a state parameter exists, simulate clicking its button.
   if (state) {
-    // Click the corresponding state button
     const stateBtn = Array.from(document.querySelectorAll('.state-button'))
       .find(btn => btn.textContent === stateNames[state]);
     if (stateBtn) stateBtn.click();
   }
 
+  // If a specific site has been provided, update the charts directly.
+  if (site) {
+    const selectedSite = siteData.find(s => s.id === site);
+    if (selectedSite) {
+      updateChartsForSite(selectedSite);
+      return; // Exit so we do not override with group default.
+    }
+  }
+
+  // Otherwise, if a group parameter exists, simulate clicking the corresponding group button.
   if (group) {
-    // Wait for river buttons to be created before simulating click
     setTimeout(() => {
       const groupBtn = Array.from(document.querySelectorAll('.filter-button'))
         .find(btn => btn.dataset.group === group);
       if (groupBtn) groupBtn.click();
-    }, 100); // small delay to ensure buttons are rendered
+    }, 100); // short delay ensures buttons are rendered.
   }
 }
+
 
 applyFiltersFromURL();

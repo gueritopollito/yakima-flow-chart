@@ -21,7 +21,7 @@ export const siteData = [
     { id: '12149000', name: 'Snoqualmie River near Carnation', lat: 47.644, lng: -121.914, group: 'Snoqualmie', state: 'WA' },
 
     // Cedar River
-    { id: '12117500', name: 'Cedar River near Landsburg', lat: 47.382, lng: -121.951, group: 'Cedar', state: 'WA' },
+    //{ id: '12117500', name: 'Cedar River near Landsburg', lat: 47.382, lng: -121.951, group: 'Cedar', state: 'WA' },
     { id: '12119000', name: 'Cedar River at Renton', lat: 47.489, lng: -122.143, group: 'Cedar', state: 'WA' },
 
     // Stillaguamish River
@@ -59,11 +59,11 @@ export const siteData = [
     { id: '12340000', name: 'Blackfoot River near Bonner', lat: 46.877, lng: -113.798, group: 'Blackfoot', state: 'MT' },
     
     // Clark Fork River
-    { id: '12392000', name: 'Clark Fork River at St. Regis', lat: 47.301, lng: -115.102, group: 'Clark Fork', state: 'MT' },
+    //{ id: '12392000', name: 'Clark Fork River at St. Regis', lat: 47.301, lng: -115.102, group: 'Clark Fork', state: 'MT' },
     { id: '12340500', name: 'Clark Fork River near Missoula', lat: 46.872, lng: -114.006, group: 'Clark Fork', state: 'MT' },
     
     // Gallatin River
-    { id: '12313000', name: 'Gallatin River near Bozeman', lat: 45.679, lng: -111.037, group: 'Gallatin', state: 'MT' },
+    //{ id: '12313000', name: 'Gallatin River near Bozeman', lat: 45.679, lng: -111.037, group: 'Gallatin', state: 'MT' },
     
     // Madison River
     { id: '06038800', name: 'Madison River at McAllister', lat: 45.430, lng: -111.633, group: 'Madison', state: 'MT' },
@@ -86,7 +86,7 @@ export const siteData = [
     { id: '06089000', name: 'Sun River near Vaughn', lat: 47.566, lng: -111.500, group: 'Sun', state: 'MT' },
     
     // East Gallatin River
-    { id: '12311000', name: 'East Gallatin River near Belgrade', lat: 45.783, lng: -111.176, group: 'East Gallatin', state: 'MT' },
+    //{ id: '12311000', name: 'East Gallatin River near Belgrade', lat: 45.783, lng: -111.176, group: 'East Gallatin', state: 'MT' },
     
     // Boulder River
     { id: '06033000', name: 'Boulder River near Boulder', lat: 46.275, lng: -112.120, group: 'Boulder', state: 'MT' },
@@ -105,7 +105,7 @@ export const siteData = [
     { id: '13317000', name: 'Salmon River at White Bird', lat: 45.757, lng: -116.300, group: 'Salmon', state: 'ID' },
 
     // Big Wood River (Silver Creek influence)
-    { id: '13139500', name: 'Big Wood River at Hailey', lat: 43.523, lng: -114.317, group: 'Big Wood', state: 'ID' },
+    //{ id: '13139500', name: 'Big Wood River at Hailey', lat: 43.523, lng: -114.317, group: 'Big Wood', state: 'ID' },
 
     // South Fork Snake River
     { id: '13037500', name: 'Snake River near Heise', lat: 43.627, lng: -111.756, group: 'SF Snake', state: 'ID' },
@@ -117,7 +117,7 @@ export const siteData = [
     { id: '13206000', name: 'Boise River at Glenwood Bridge at Boise', lat: 43.628, lng: -116.270, group: 'Boise', state: 'ID' },
 
     // Teton River
-    { id: '13052100', name: 'Teton River near Driggs', lat: 43.724, lng: -111.114, group: 'Teton', state: 'ID' },
+    //{ id: '13052100', name: 'Teton River near Driggs', lat: 43.724, lng: -111.114, group: 'Teton', state: 'ID' },
 
     // Lochsa River
     { id: '13337000', name: 'Lochsa River near Lowell', lat: 46.153, lng: -115.596, group: 'Lochsa', state: 'ID' },
@@ -127,7 +127,7 @@ export const siteData = [
     { id: '14092500', name: 'Deschutes River near Madras', lat: 44.728, lng: -121.178, group: 'Deschutes', state: 'OR' },
 
     // Deschutes River (Lower)
-    { id: '14103000', name: 'Deschutes River at Moody', lat: 45.633, lng: -121.107, group: 'Deschutes', state: 'OR' },
+   // { id: '14103000', name: 'Deschutes River at Moody', lat: 45.633, lng: -121.107, group: 'Deschutes', state: 'OR' },
 
     // Grande Ronde River
     { id: '13333000', name: 'Grande Ronde River at Troy', lat: 45.947, lng: -117.455, group: 'Grande Ronde', state: 'OR' },
@@ -145,7 +145,7 @@ export const siteData = [
     { id: '14159500', name: 'McKenzie River near Vida', lat: 44.111, lng: -122.608, group: 'McKenzie', state: 'OR' },
 
     // Crooked River
-    { id: '14080500', name: 'Crooked River near Prineville', lat: 44.310, lng: -120.806, group: 'Crooked', state: 'OR' },
+   // { id: '14080500', name: 'Crooked River near Prineville', lat: 44.310, lng: -120.806, group: 'Crooked', state: 'OR' },
 
     // Metolius River
     { id: '14088500', name: 'Metolius River near Grandview', lat: 44.529, lng: -121.601, group: 'Metolius', state: 'OR' },
