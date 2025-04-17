@@ -24,18 +24,18 @@ async function fetchNOAAWeather(lat, lon) {
     const rawLow = obsData.properties.minTemperatureLast24Hours?.value;
 
     return {
-      airTemp: temp !== null ? (temp * 9/5 + 32).toFixed(1) : 'N/A',
-      windSpeed: wind !== null ? (wind * 2.23694).toFixed(1) : 'N/A',
-      highLow: (rawHigh !== null && rawLow !== null)
-        ? `${(rawHigh * 9/5 + 32).toFixed(0)} / ${(rawLow * 9/5 + 32).toFixed(0)}`
-        : 'N/A'
+      airTemp: temp !== null ? (temp * 9/5 + 32).toFixed(1) : null,
+      windSpeed: wind !== null ? (wind * 2.23694).toFixed(1) : null,
+      highTemp: rawHigh !== null ? (rawHigh * 9/5 + 32).toFixed(0) : null,
+      lowTemp: rawLow !== null ? (rawLow * 9/5 + 32).toFixed(0) : null
     };
   } catch (err) {
     console.error('NOAA fetch failed:', err);
     return {
-      airTemp: 'N/A',
-      windSpeed: 'N/A',
-      highLow: 'N/A'
+      airTemp: null,
+      windSpeed: null,
+      highTemp: null,
+      lowTemp: null
     };
   }
 }
@@ -44,22 +44,23 @@ async function populateTiles() {
   const usgs = await getCurrentFlow(siteId);
   const noaa = await fetchNOAAWeather(siteLat, siteLon);
 
-  // Populate FLOW and GAUGE HEIGHT from primary site
+  // Populate FLOW
   document.querySelector('.tile.flow .value').innerHTML = (usgs.flow !== null)
     ? `${usgs.flow.toFixed(0)} <span style="font-size:0.8rem;">cfs</span>`
     : 'N/A';
 
+  // Populate GAUGE HEIGHT
   document.querySelector('.tile.gauge .value').innerHTML = (usgs.gaugeHeight !== null)
     ? `${usgs.gaugeHeight.toFixed(2)} <span style="font-size:0.8rem;">ft</span>`
     : 'N/A';
 
-  // Populate WATER TEMP - fallback to nearby if needed
+  // Populate WATER TEMP
   if (usgs.waterTemp !== null) {
-    document.querySelector('.tile.temp .value').innerHTML = `${usgs.waterTemp.toFixed(1)} <span style="font-size:0.8rem;">°F</span>`;
+    document.querySelector('.tile.temp .value').innerHTML = `${usgs.waterTemp.toFixed(1)}<span style="font-size:0.8rem;">°F</span>`;
   } else {
     console.log('No water temp at primary site, searching nearby rivers...');
+    const nearbySites = await findNearbySitesWithWaterTemp(siteLat, siteLon, 50);
 
-    const nearbySites = await findNearbySitesWithWaterTemp(siteLat, siteLon, 50); // 50-mile buffer
     if (nearbySites.length > 0) {
       const nearest = nearbySites.reduce((closest, site) => {
         const distanceToSite = haversineDistance(siteLat, siteLon, site.lat, site.lon);
@@ -69,12 +70,9 @@ async function populateTiles() {
 
       console.log('Using water temp from nearby site:', nearest.siteName);
 
-      // Fetch only water temp from the fallback site
       const nearbyFlow = await getCurrentFlow(nearest.siteId, true); // onlyTemp = true
-
       if (nearbyFlow.waterTemp !== null) {
-        document.querySelector('.tile.temp .value').innerHTML = `${nearbyFlow.waterTemp.toFixed(1)} <span style="font-size:0.8rem;">°F</span>`;
-        // Option: Add a subtle note here that temp is from a nearby site
+        document.querySelector('.tile.temp .value').innerHTML = `${nearbyFlow.waterTemp.toFixed(1)}<span style="font-size:0.8rem;">°F</span>`;
       } else {
         document.querySelector('.tile.temp .value').innerHTML = 'No Recent Temp';
       }
@@ -83,16 +81,20 @@ async function populateTiles() {
     }
   }
 
-  // Populate WIND SPEED and HIGH/LOW from NOAA
-  document.querySelector('.tile.wind .value').innerHTML = (noaa.windSpeed !== 'N/A')
+  // Populate WIND SPEED
+  document.querySelector('.tile.wind .value').innerHTML = (noaa.windSpeed !== null)
     ? `${noaa.windSpeed} <span style="font-size:0.8rem;">mph</span>`
     : 'N/A';
 
-  document.querySelector('.tile.highlow .value').innerHTML = (noaa.highLow !== 'N/A')
-    ? `${noaa.highLow}`
-    : (noaa.airTemp !== 'N/A')
-      ? `${noaa.airTemp}°F`
-      : 'N/A';
+  // Populate HIGH / LOW
+  const highlowElement = document.querySelector('.tile.highlow .value');
+  if (noaa.highTemp !== null && noaa.lowTemp !== null) {
+    highlowElement.innerHTML = `${noaa.highTemp}° / ${noaa.lowTemp}°<span style="font-size:0.8rem;">F</span>`;
+  } else if (noaa.airTemp !== null) {
+    highlowElement.innerHTML = `${noaa.airTemp}<span style="font-size:0.8rem;">°F</span>`;
+  } else {
+    highlowElement.textContent = 'N/A';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

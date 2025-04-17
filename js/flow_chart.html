@@ -51,6 +51,16 @@
       border-radius: 8px;
       padding: 1rem;
       text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .tile .label {
@@ -62,6 +72,12 @@
     .tile .value {
       font-size: 1.4rem;
       font-weight: 600;
+    }
+
+    .tile .unit {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-left: 2px;
     }
 
     canvas {
@@ -79,23 +95,23 @@
     <div class="tiles">
       <div class="tile flow">
         <div class="label">FLOW</div>
-        <div class="value">...</div>
+        <div class="value"><span class="flow-value">...</span><span class="unit">cfs</span></div>
       </div>
       <div class="tile temp">
         <div class="label">WATER TEMP</div>
-        <div class="value">...</div>
+        <div class="value"><span class="temp-value">...</span><span class="unit">°F</span></div>
       </div>
       <div class="tile gauge">
         <div class="label">GAUGE HEIGHT</div>
-        <div class="value">...</div>
+        <div class="value"><span class="gauge-value">...</span><span class="unit">ft</span></div>
       </div>
       <div class="tile wind">
         <div class="label">WIND</div>
-        <div class="value">...</div>
+        <div class="value"><span class="wind-value">...</span><span class="unit">mph</span></div>
       </div>
       <div class="tile highlow">
-        <div class="label">HIGH / LOW</div>
-        <div class="value">...</div>
+        <div class="label">AIR TEMP</div>
+        <div class="value"><span class="highlow-value">...</span><span class="unit">°F</span></div>
       </div>
     </div>
 
