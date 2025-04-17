@@ -1,30 +1,37 @@
 // usgs.js – Fetch and render flow data from USGS
 
-export async function getCurrentFlow(siteId) {
-    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060,00010,00020&siteStatus=all&period=PT2H`;
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      const series = data.value.timeSeries;
-  
-      let flow = null;
-      let waterTemp = null;
-      let airTemp = null;
-  
-      series.forEach(s => {
-        const param = s.variable.variableCode[0].value;
-        const val = parseFloat(s.values[0]?.value?.[0]?.value);
-        if (param === '00060') flow = val;
-        if (param === '00010') waterTemp = val;
-        if (param === '00020') airTemp = val;
-      });
-  
-      return { flow, waterTemp, airTemp };
-    } catch (err) {
-      console.error(`Error fetching data for site ${siteId}:`, err);
-      return { flow: null, waterTemp: null, airTemp: null };
-    }
+// Fetch current flow, water temp, air temp, and gauge height
+// If onlyTemp = true, only fetch water temp (00010) for nearby fallback sites
+export async function getCurrentFlow(siteId, onlyTemp = false) {
+  const params = onlyTemp ? '00010' : '00060,00010,00020,00065';
+  const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=${params}&siteStatus=all&period=P7D`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const series = data.value.timeSeries;
+
+    let flow = null;
+    let waterTemp = null;
+    let airTemp = null;
+    let gaugeHeight = null;
+
+    series.forEach(s => {
+      const param = s.variable.variableCode[0].value;
+      const val = parseFloat(s.values[0]?.value?.[0]?.value);
+      if (param === '00060') flow = val;
+      if (param === '00010') waterTemp = val;
+      if (param === '00020') airTemp = val;
+      if (param === '00065') gaugeHeight = val;
+    });
+
+    return { flow, waterTemp, airTemp, gaugeHeight };
+  } catch (err) {
+    console.error(`Error fetching data for site ${siteId}:`, err);
+    return { flow: null, waterTemp: null, airTemp: null, gaugeHeight: null };
   }
+}
+
   
   export async function checkDataAvailability(siteId) {
     const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&parameterCd=00060&siteStatus=all&period=P7D`;

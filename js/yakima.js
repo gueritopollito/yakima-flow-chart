@@ -257,12 +257,18 @@ function selectFilterButtonForGroup(group) {
 async function loadReportOnly(group) {
   const summaryContainer = document.getElementById('river-summary');
   try {
-    const reports = await loadFishingReports();
-    const report = reports[group];
+    const reportsByKey = await loadFishingReports();
+
+    // Flatten all reports from all keys into one array
+    const allReports = Object.values(reportsByKey).flat();
+
+    // Try to find a report whose river name matches the group
+    const report = allReports.find(r => r.river.toLowerCase() === group.toLowerCase());
+
     if (report) {
       summaryContainer.innerHTML = `
         <h3>Fishing Report: ${report.river} River</h3>
-        <p style="white-space: pre-line; text-align: left;">${report.summary}</p>
+        <div style="text-align: left; margin-bottom: 1rem;">${marked.parse(report.summary)}</div>
         <p style="font-size: 0.9rem; text-align: left;">
           <strong>Sources:</strong><br>
           ${report.sources.map(s => `<a href="${s.url}" target="_blank">${s.title}</a>`).join('<br>')}

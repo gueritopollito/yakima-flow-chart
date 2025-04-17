@@ -1,109 +1,512 @@
 {
-  "Yakima": {
-    "river": "Yakima",
-    "summary": "The Yakima River is currently in great shape for fishing. The river flow is stable at 2,650 cfs at Umtanum with a slight rise due to recent rain. Water clarity is good at 24\"+ Vis Green and the water temperature ranges between 42-45 F. \n\nThe Skwala Dry Flies are active during the afternoon hours while Skwala Nymphs dominate the morning. Worms, Mayfly Nymphs, Stonefly Nymphs, Sculpin and Various Streamers, and Olive Streamers are also working well. Besides, Caddis Larvae and March Browns have begun to show up consistently in the upper Lower Canyon and Farmlands sections. \n\nThe fishing condition is likely to improve once the water level drops. Nymphing earlier in the day and switching to dry flies as the day progresses is recommended for effective fishing. Anglers should look out for upcoming March Browns and Baetis hatches. \n\nIn terms of access, wade fishing has been solid throughout the system, especially in the Lower Canyon. The weather is slowly warming up with spring, and the fishing outlook for the coming weeks looks promising. However, remember that trout are currently in the mid to late stages of spawn, so handle with care to maintain their health.",
-    "sources": [
-      {
-        "source": "Red's Fly Fishing",
-        "title": "Yakima River Fishing Report \u2014 Red's Fly Shop",
-        "url": "https://redsflyfishing.com/blogs/yakima-river-fishing-report/yakima-river-report",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Evening Hatch",
-        "title": "North Washington guide service",
-        "url": "https://theeveninghatch.com/reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 4/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 11/14/2024",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      }
-    ],
-    "lastUpdated": "2025-04-09"
-  },
-  "Snoqualmie": {
-    "river": "Snoqualmie",
-    "summary": "The Snoqualmie River downstream is currently closed for fishing until later in April, although the upper forks are open and can provide decent trout fishing at this time of year (Avid Angler - 4/2/2025). Snow melt can significantly impact water levels and fishing conditions, so it's crucial to keep an eye on that (Avid Angler - 4/2/2025). There might be a few fish around interested in dry flies, but the majority of catches are likely to be on nymph patterns or small streamers (Avid Angler - 4/2/2025). \n\nIn the lower Snoqualmie, winter steelhead could be a good bet if water clarity is favorable (Avid Angler - 1/2/2025). The middle fork, specifically above the falls, continues to be a hot spot for local trout (Avid Angler - 1/2/2025). Nymph fishing is the go-to technique for this time of year, but swinging a streamer through your favorite run could yield surprising results (Avid Angler - 1/2/2025). \n\nOverall, the outlook is promising for the weeks ahead, pending water clarity and flow conditions. Always remember to check the latest regulations and restrictions before heading out.",
-    "sources": [
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 4/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 1/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      }
-    ],
-    "lastUpdated": "2025-04-09"
-  },
-  "Skagit": {
-    "river": "Skagit",
-    "summary": "The Skagit River is still open for steelhead fishing for almost two more weeks, and recent conditions have been promising (source: Avid Angler, 4/2/2025). Rain and snow melt have brought more fish into the river, with some successful catches reported. As the season progresses, the fish begin to adopt a more freshwater taste, prompting a shift in fly color choice towards more natural and muted shades. The rivers can get crowded during this time, so patience is advised (source: Avid Angler, 2/26/2025). The run has been strong this season, with some impressive catches documented. Respect for the fish is emphasized, with a focus on ensuring they are returned safely to the water. Looking ahead, conditions are expected to remain favorable until the close of the season, providing ample opportunities for both seasoned and novice anglers.",
-    "sources": [
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 4/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 2/26/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      }
-    ],
-    "lastUpdated": "2025-04-09"
-  },
-  "Skykomish": {
-    "river": "Skykomish",
-    "summary": "The Skykomish River is currently closed for fishing as of 4/2/2025 (Avid Angler). However, earlier this year, fishing for steelhead was encouraged before the majority of the river closed at the end of January. A small stretch near the Reiter Ponds Hatchery remained open until mid-February, which was a great time to target steelhead. There were reports of some fish being caught during this period (Avid Angler, 1/22/2025). \n\nDuring the open season, the use of a Spey rod proved beneficial for casting sink tips and larger flies with little to no back cast room, which is a common feature of the Skykomish's steelhead waters. For those using a single-handed rod, big gravel bars up and down the river provided some backcast room. A variety of sink tips were recommended to get flies down in the zone, as winter steelhead don't like to chase a fly as much as their summer counterparts. The Avid Angler team was willing to assist with spey casting or getting into the sport. \n\nThe outlook for the upcoming weeks is unclear due to the current closure of the river. Future updates will provide information on river reopening and conditions.",
-    "sources": [
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 4/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 1/22/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      }
-    ],
-    "lastUpdated": "2025-04-09"
-  },
-  "Stillaguamish": {
-    "river": "Stillaguamish",
-    "summary": "The Stillaguamish River is currently closed for fishing as per the latest update from Avid Angler (4/2/2025). Prior to the closure, the river was providing decent opportunities for steelhead, even though no standout reports were received (Avid Angler - 1/22/2025). The river was mostly accessible and open for fishing through the end of January and partially open until mid-February. Anglers were advised to actively seek out fish, as their presence in the river was expected throughout the open season. Unfortunately, specific details regarding flow/clarity, hatch and bug activity, and effective fly patterns or setups were not mentioned in the reports. As we await the reopening of the river, it's advisable to frequently check for updates on fishing conditions.",
-    "sources": [
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 4/2/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      },
-      {
-        "source": "Avid Angler",
-        "title": "Avid Angler - 1/22/2025",
-        "url": "https://avidangler.com/fishing-reports",
-        "lastUpdated": "2025-04-09"
-      }
-    ],
-    "lastUpdated": "2025-04-09"
-  }
+  "Arkansas": [
+    {
+      "river": "Arkansas",
+      "summary": "**Arkansas River Overall Fishing Report - April 2025**\n\nThe Arkansas River is offering excellent spring fly fishing opportunities across its various sections, with conditions varying slightly by location. Here's a unified summary of the current conditions and recommended strategies for anglers targeting different parts of the river.\n\n### General Conditions\n- **Flows & Clarity**: Flows are generally in a favorable range for both wade and float fishing, with flows at Wellsville around 322-386 CFS and slightly stained clarity but with several feet of visibility. In the Upper Basin, flows range from 50 CFS at Hayden Meadows to 263 CFS at Granite, offering clear water conditions.\n- **Weather**: Recent warm weather has led to increased insect activity, although a colder front is expected, which could enhance Blue Wing Olive (BWO) hatches. Expect highs in the 40s to 80s, with the potential for snow and rain, typical of spring in Colorado.\n- **Outlook**: With the current weather pattern, expect increasing hatches and active fish throughout April and early May.\n\n### Section-Specific Insights\n\n#### **Pueblo**\n- **Flows & Clarity**: Currently at 527 CFS, offering great fishing conditions.\n- **Hatches**: Midges and BWOs are active both subsurface and on top. \n- **Tactics**: Nymphing with a focus on junk patterns like leeches and craneflies. Streamers are effective later in the day.\n- **Recommended Patterns**: RS2, Slim Shady, Barr's Cranefly Larva, Mini Leech, Neils BWO, Parachute Adams.\n\n#### **Upper Basin: Leadville to Buena Vista**\n- **Flows & Clarity**: 50 CFS at Hayden Meadows and 263 CFS at Granite, clear water.\n- **Hatches**: Midges and BWOs, with the best activity between 1-4 PM.\n- **Tactics**: Early day nymphing in deeper water, transitioning to dry-dropper rigs in the afternoon. \n- **Recommended Patterns**: Golden Stonefly Nymphs, Midge Pupae, Baetis Nymphs.\n\n#### **Middle Basin: Buena Vista to Salida**\n- **Flows & Clarity**: 380 CFS at Hecla Junction, slightly stained.\n- **Hatches**: Strong BWO hatches in the afternoon, with midge and caddis activity.\n- **Tactics**: Nymphing in the morning, dry-dropper rigs in shallower water later. \n- **Recommended Patterns**: Golden Stonefly Nymphs, Caddis Larvae, BWO Emergers.\n\n#### **Lower Basin: Salida to Canon City**\n- **Flows & Clarity**: 386 CFS at Wellsville, slightly stained.\n- **Hatches**: BWO and caddis hatches are ramping up, especially with the \"Mother's Day\" caddis.\n- **Tactics**: Nymphing in the morning, transitioning to dry-dropper rigs in the afternoon. Streamers are becoming productive.\n- **Recommended Patterns**: Caddis Pupae, BWO Nymphs, Golden Stonefly Nymphs.\n\n### Fly Shops and Unique Insights\n- **Angler's Covey (Pueblo)**: Highlights the importance of covering ground and the potential for sight fishing given the current clarity.\n- **ArkAnglers (Upper and Middle Basin)**: Emphasizes the importance of adapting to hatches and using dry-dropper rigs as the day warms.\n- **Royal Gorge Anglers (Freestone)**: Points out the beginning of strong caddis activity and the importance of being prepared for BWO lifecycle stages.\n- **UpRiver Fly Fishing (General)**: Recommends focusing on presentation and depth, with an emphasis on being methodical with nymphing setups.\n\nOverall, the Arkansas River is primed for a productive spring, with diverse hatches and favorable wading and floating conditions. Anglers should be ready to adapt tactics throughout the day to capitalize on the active fish and emerging insect life.",
+      "sources": [
+        {
+          "source": "Angler's Covey",
+          "title": "Angler's Covey Report \u2013 Arkansas River (Pueblo)",
+          "url": "https://anglerscovey.com/fishing-locations/arkansas-river-pueblo/",
+          "section": "Pueblo",
+          "reportDate": "4/15/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "ArkAnglers",
+          "title": "ArkAnglers Report \u2013 Upper Basin: Leadville to Buena Vista",
+          "url": "https://arkanglers.com/fishing-conditions/",
+          "section": "Upper Basin: Leadville to Buena Vista",
+          "reportDate": "April 16, 2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "ArkAnglers",
+          "title": "ArkAnglers Report \u2013 Middle Basin: Buena Vista to Salida",
+          "url": "https://arkanglers.com/fishing-conditions/",
+          "section": "Middle Basin: Buena Vista to Salida",
+          "reportDate": "April 16, 2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "ArkAnglers",
+          "title": "ArkAnglers Report \u2013 Lower Basin: Salida to Canon City",
+          "url": "https://arkanglers.com/fishing-conditions/",
+          "section": "Lower Basin: Salida to Canon City",
+          "reportDate": "April 16, 2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Blue Quill Angler",
+          "title": "Blue Quill Angler Report \u2013 Middle Arkansas River",
+          "url": "https://bluequillangler.com/pages/river-page-arkansas-middle",
+          "section": "Middle Arkansas",
+          "reportDate": "6/11/2024",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Blue Quill Angler",
+          "title": "Blue Quill Angler Report \u2013 Upper Arkansas River (Leadville/Granite)",
+          "url": "https://bluequillangler.com/pages/river-page-arkansas-upper",
+          "section": "Upper Arkansas (Leadville/Granite)",
+          "reportDate": "7/30/24",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Arkansas Headwaters (Granite)",
+          "url": "https://fishcolorado.com/pages/arkansas-headwaters-granite",
+          "section": "Arkansas Headwaters (Granite)",
+          "reportDate": "4/4/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Arkansas River (Salida)",
+          "url": "https://fishcolorado.com/pages/arkansas-salida",
+          "section": "Arkansas River (Salida)",
+          "reportDate": "4/1/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Royal Gorge Anglers",
+          "title": "Royal Gorge Anglers Report \u2013 Arkansas River (Freestone)",
+          "url": "https://www.royalgorgeanglers.com/fishing-reports/arkansas-river-freestone-report/",
+          "section": "Freestone",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Royal Gorge Anglers",
+          "title": "Royal Gorge Anglers Report \u2013 Arkansas River (Tailwater)",
+          "url": "https://www.royalgorgeanglers.com/fishing-reports/arkansas-river-tailwater-report/",
+          "section": "Tailwater",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "UpRiver Fly Fishing",
+          "title": "UpRiver Fly Fishing \u2013 Latest Arkansas River Report",
+          "url": "https://www.upriverflyfishing.com/post/arkansas-river-fishing-report-march-27-2025",
+          "section": "Arkansas River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/15/2025",
+        "April 16, 2025",
+        "April 16, 2025",
+        "April 16, 2025",
+        "6/11/2024",
+        "7/30/24",
+        "4/4/25",
+        "4/1/25"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Colorado": [
+    {
+      "river": "Colorado",
+      "summary": "### Colorado River Fly Fishing Report\n\n**General Fishing Conditions:**\nThe Colorado River is currently experiencing spring conditions with varying flows and clarity. Flows are affected by early runoff and warmer temperatures, causing fluctuations and some muddy water, especially after hot days. The river is generally clear on cooler days. Fishing conditions range from fair to good, with the river offering both quality and challenging fishing opportunities.\n\n**Flow and Clarity:**\n- **Glenwood Springs:** Approximately 2530 CFS and rising; clarity is affected by temperature, with brown water after warm days.\n- **Parshall:** Flow at 300 CFS with 1-3 feet visibility due to runoff.\n- **Pumphouse:** Flow at 900 CFS; generally clear, but expect occasional runoff conditions.\n\n**Hatches and Fly Patterns:**\n- **Hatches:** Blue Winged Olives (BWOs), midges, caddis, stoneflies, and early season baetis are prevalent. There are also reports of PMDs, Tricos, and sculpins in some areas.\n- **Nymphs:** Effective patterns include Pat's Rubber Legs, BH Prince Nymph, Hare's Ear, Pheasant Tail, and Copper Johns. Smaller patterns like RS2 and Zebra Midge are also productive.\n- **Dries:** Parachute Adams, Elk Hair Caddis, and various BWO patterns such as Sparkle Dun and Comparadun are recommended.\n- **Streamers:** Patterns like Sex Dungeons, Double Dirty Hippy, and Sculpzilla are working well, particularly on overcast days or in off-color water.\n\n**Tactics and Access:**\n- Nymphing remains the most consistent method, with a focus on deeper runs and riffles. Streamer fishing is improving with warmer temperatures, and dry fly opportunities are increasing as hatches become more consistent.\n- **Access Points:** Notable areas include the confluence with the Roaring Fork, Dino Boat Ramp, Pumphouse Recreation Area, and the stretches between Kremmling and Parshall. These areas offer both wading and float fishing opportunities.\n- **Caution:** Exercise care when wading in higher flows, and respect spawning areas by avoiding fishing in NO FISH ZONES.\n\n**Section Callouts:**\n- **Pumphouse:** Productive for both wade and float fishing, with diverse hatches supporting various fishing techniques. Streamers, nymphs, and dries have all shown success.\n- **Parshall:** Offers excellent dry and nymph fishing in slower runs and riffles. A heavy rig is not typically necessary here due to the mellow gradient.\n- **Lower Colorado:** From State Bridge downstream, expect muddy conditions with warm weather, but good fishing during cooler periods.\n\n**Outlook:**\nThe outlook for the Colorado River is promising as spring progresses. Expect continued variability in conditions due to runoff, but opportunities for quality fishing will persist, especially as hatches become more regular. Keep an eye on the weather, as cooler days will enhance clarity and fishing conditions. Always be mindful of spawning fish and adhere to local regulations and closures.",
+      "sources": [
+        {
+          "source": "The Colorado Angler",
+          "title": "The Colorado Angler \u2013 Fishing Report",
+          "url": "https://thecoloradoangler.com/fishing-report/",
+          "section": "Colorado River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Colorado River (Parshall)",
+          "url": "https://fishcolorado.com/pages/colorado-parshall",
+          "section": "Colorado River \u2013 Parshall",
+          "reportDate": "4/14/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Colorado River (Pumphouse)",
+          "url": "https://fishcolorado.com/pages/colorado-pumphouse",
+          "section": "Colorado River \u2013 Pumphouse",
+          "reportDate": "4/14/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Frying Pan Anglers",
+          "title": "Frying Pan Anglers Report \u2013 Colorado River",
+          "url": "https://www.fryingpananglers.com/colorado-river-1",
+          "section": "Colorado River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Taylor Creek Fly Shops",
+          "title": "Colorado River Report April 13 2025",
+          "url": "https://taylorcreek.com/blogs/colorado-river-report/colorado-river-report-april-13-2025",
+          "section": "Colorado River",
+          "reportDate": "April 13 2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Vail Valley Anglers",
+          "title": "Vail Valley Anglers Report \u2013 Colorado River",
+          "url": "https://www.vailvalleyanglers.com/colorado-river-fly-fishing-report",
+          "section": "Colorado River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/14/25",
+        "4/14/2025",
+        "April 13 2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Eagle": [
+    {
+      "river": "Eagle",
+      "summary": "**Eagle River Fly Fishing Report - April 2025**\n\n**General Conditions:**\nThe Eagle River, a freestone tributary to the Colorado River, is currently experiencing warming weather, which has improved fishing conditions throughout. Flows at Gypsum are approximately 560 CFS, providing suitable conditions for various fishing techniques. However, anglers should be prepared for fluctuating water clarity, particularly downstream of Wolcott, where the water has a noticeable tinge and may become dirtier in the coming days due to low elevation runoff.\n\n**Upper Eagle River:**\nThe upper stretches near the headwaters in the White River National Forest offer excellent pocket water fishing opportunities. These areas are best accessed along Highway 24 and are ideal for dry flies and small nymphs. Water clarity is generally better in these sections, although it may occasionally become tinted on warm days. In clearer water, focus on midges, baetis, and small caddis larvae patterns. If the clarity worsens, consider streamers, worm patterns, egg patterns, and stoneflies.\n\n**Middle and Lower Eagle River:**\nFrom Wolcott downstream, the water is slightly off-color but remains fishable. Nymphing has been consistent, with patterns like Pat's Rubber Leg followed by smaller flies such as Zebra Midges or Rainbow Warriors proving effective. The dry fly action has picked up considerably, with emerging Winter Stones, Midges, and BWOs. Recommended dry fly patterns include the Black Garcia Mini Hot Mayfly paired with a Chocolate Thunder Emerger or a small Para Adams.\n\n**Streamer Fishing:**\nStreamer fishing has also improved, particularly in the off-color water. Effective patterns include the articulated Extrovert in Tan or Olive, Thin Mint, and Sculpzilla.\n\n**Hatches:**\nCurrent hatches include Midges, BWOs, and Winter Stones. These hatches are providing ample opportunities for both nymphing and dry fly fishing.\n\n**Conservation Note:**\nRainbow Trout are currently spawning, so anglers are urged to avoid fishing to them. Look for spawning redds and steer clear to protect the fish population.\n\n**Access:**\nPublic access is primarily found along I-70 between the towns of Minturn and Gypsum. Anglers are reminded to use a river map to identify public access areas, as these stretches are interspersed with private land.\n\n**Outlook:**\nAs the weather continues to warm, expect increased insect activity and improved fishing conditions. However, be prepared for potential changes in water clarity due to runoff. Overall, the Eagle River is offering a productive and rewarding fishing experience for those adapting to the current conditions.",
+      "sources": [
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Eagle River",
+          "url": "https://fishcolorado.com/pages/eagle-river",
+          "section": "Eagle River",
+          "reportDate": "4/14/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Vail Valley Anglers",
+          "title": "Vail Valley Anglers Report \u2013 Eagle River",
+          "url": "https://www.vailvalleyanglers.com/eagle-river-fly-fishing-report-vail-colorado",
+          "section": "Eagle River",
+          "reportDate": "April 9th, 2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/14/25",
+        "April 9th, 2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Fryingpan": [
+    {
+      "river": "Fryingpan",
+      "summary": "**Fryingpan River Fishing Report - April 2025**\n\n**General Conditions:**\nThe Fryingpan River is currently experiencing clear water conditions, with an overall fishing rating of 7 out of 10. However, on overcast, rainy, or snowy days, the fishing conditions improve significantly, reaching a 9 out of 10. Anglers can expect active hatches of Blue Winged Olives (BWOs) and midges, alongside the year-round presence of mysis shrimp and sculpins. As the weather warms, anticipate occasional discoloration due to runoff from feeder creeks, making it an opportune time to employ San Juan Worms.\n\n**Upper Fryingpan:**\n- **Water Clarity:** Clear\n- **Hatches:** Primarily Blue Winged Olives (20-24) and midges (22-26)\n- **Patterns:** Effective dry flies include Mike Lawson's No Hackle BWO and Parachute Adams, while nymphing tactics favor Barr's Emerger and Tim's Mysis. Streamer fishing is productive during low light conditions or when skies are overcast.\n- **Tactics:** Stealth is crucial; avoid excessive line on the water to prevent spooking fish.\n\n**Middle Fryingpan (Mile Marker 4 to Mile Marker 8):**\n- **Water Conditions:** Clear with potential for off-color conditions\n- **Hatches:** Blue Winged Olives (20-22) and midges (20-26), with some caddis starting to appear\n- **Patterns:** Incorporate CDC Biot BWO and Elk Hair Caddis for dries, while nymphing can benefit from Tim Heng's BLM and Zebra Midge. Streamers such as the Tungsten Double Thin Mint are effective.\n- **Tactics:** Mobility is key; explore various sections to find active fish.\n\n**Lower Fryingpan (Basalt to Mile Marker 4):**\n- **Water Conditions:** Improved clarity with warmer temperatures\n- **Hatches:** Caddis (14-18), Blue Winged Olives (18-20), and midges (20-26)\n- **Patterns:** For dries, the Elk Hair Caddis and Parachute Purple Haze are recommended. Nymphing with Prince Nymphs and Jerome Baetis is productive. Streamers such as the Home Invader are effective for targeting larger fish.\n- **Tactics:** Fish are less pressured here, providing a good opportunity to try small hopper-dropper rigs and Euro-style setups.\n\n**Outlook:**\nThe warming trend suggests an increase in hatch activity, particularly for BWOs and caddis. As runoff impacts water clarity, adapting fly selection and presentation will be important. The lower river sections will see earlier hatch activity, offering a chance for less pressured fishing. Overall, anglers should prepare for a dynamic and rewarding experience on the Fryingpan River this season.\n\n**Source:** Taylor Creek Fly Shops",
+      "sources": [
+        {
+          "source": "Taylor Creek Fly Shops",
+          "title": "Fryingpan River Report April 13 2025",
+          "url": "https://taylorcreek.com/blogs/fryingpan-river-report/fryingpan-river-report-april-13-2025",
+          "section": "Fryingpan River",
+          "reportDate": "April 13 2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "April 13 2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Frying Pan": [
+    {
+      "river": "Frying Pan",
+      "summary": "**Frying Pan River Fishing Report - October 2023**\n\n**General River Conditions:**\nThe Frying Pan River is currently offering excellent fishing conditions with clear water throughout. The river is divided into two primary sections: the Upper Frying Pan (above Mile Marker 8) and the Lower Frying Pan (below Mile Marker 8). Both sections are seeing productive fishing, with clear water and active hatches.\n\n**Upper Frying Pan (Above Mile Marker 8):**\n- **Hatches and Fly Patterns:** Anglers are encountering Blue Winged Olives, Midges, and Mysis Shrimp. Effective nymph patterns include Black and Red Zebra Midges (sizes 20-24), Black Beauty Midge (20-24), Candy Cane Midge (20-24), Grey RS2 (18-22), Juju Baetis (18-22), Skinny Pheasant Tail (20-22), Mysis Shrimp (18-22), Bling Midge (20-24), and San Juan Worm (14). For dries, Parachute Adams (20-22), Purple Haze (20-22), Extended Body BWO (20-22), Roy Palm Special Emerger (20-24), and Parachute Adult Midge (20-24) are recommended. Streamers like Sculpzilla (6-9) and Wooly Bugger (6-12) are also productive.\n- **Flow and Clarity:** The water is clear, providing excellent visibility for sight fishing.\n\n**Lower Frying Pan (Below Mile Marker 8):**\n- **Hatches and Fly Patterns:** Similar to the upper section, Blue Winged Olives, Midges, and Stoneflies are prevalent. Nymphs that are working well include Black and Red Zebra Midges (20-24), Black Beauty Midge (20-24), Grey RS2 (18-22), Juju Baetis (18-22), Jigged Tungsten Blowtorch (16-18), Black Pheasant Tail (14), and San Juan Worm (14). For dry fly enthusiasts, Parachute Adams (20-22), Purple Haze (20-22), Extended Body BWO (20-22), Roy Palm Special Emerger (20-24), and Parachute Adult Midge (20-24) are effective. Streamers such as Sculpzilla (6-9) and Wooly Bugger (6-12) are recommended as well.\n- **Flow and Clarity:** The water remains clear, making it ideal for presenting flies accurately.\n\n**Tactics and Access:**\nFor both sections, using a combination of nymphs and dries is proving to be successful. Anglers should focus on deeper runs and seams for nymphing, while targeting rising fish in slower water with dry flies. Streamers can be effective in shaded areas or during low light conditions. Access is generally good, with private sections clearly marked, so ensure you are fishing public access areas.\n\n**Outlook:**\nWith the current clear water conditions and active hatches, the outlook for the Frying Pan River remains positive. As temperatures continue to drop, expect midges and Blue Winged Olives to dominate the hatch chart. Anglers should prepare for colder weather and dress accordingly to enjoy the productive fall fishing that this river offers.\n\n**Unique Insights:**\nThis report is based on recent insights from Frying Pan Anglers. For the most up-to-date conditions and expert advice, consider contacting them directly at 970-927-3441 or via email at fryingpananglers1@gmail.com.",
+      "sources": [
+        {
+          "source": "Frying Pan Anglers",
+          "title": "Frying Pan Anglers Report \u2013 Frying Pan River",
+          "url": "https://www.fryingpananglers.com/frying-pan-river",
+          "section": "Frying Pan River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Roaring Fork": [
+    {
+      "river": "Roaring Fork",
+      "summary": "### Roaring Fork River Fly Fishing Report\n\n#### General Conditions\nThe Roaring Fork River is currently experiencing varied conditions across its length due to warming weather and increased flows from snowmelt. Overall, water clarity is generally clear but expect some color with further warming. The river boasts diverse insect activity with hatches of Blue Winged Olives (BWOs), Midges, and Caddis, as well as Stoneflies and small Green Drakes in certain areas.\n\n#### Upper Roaring Fork (Aspen to Basalt)\n- **Flow & Clarity**: Flows at 150 CFS with clear water starting to rise, potentially bringing some color.\n- **Hatches**: Primarily Midges with some oddball BWOs.\n- **Fly Patterns**:\n  - **Nymphs**: Sparkle Wing RS2, Prince Nymph, San Juan Worm, Guide's Choice Hare's Ear.\n  - **Dries**: Dorsey's Midge Emerger, Antonio's Hi-Vis Quill Midge.\n  - **Streamers**: Craven's Swim Coach, Barr's Slump Buster.\n- **Tactics**: Use small indicators and trailing flies with light tippets. Focus on soft water along the banks before casting to deeper areas.\n- **Outlook**: Improved conditions with easier access; however, be prepared for potential changes with incoming weather.\n\n#### Middle Roaring Fork (Basalt to Carbondale)\n- **Flow & Clarity**: At 550 CFS, clear with potential color during warmer days.\n- **Hatches**: BWOs and Midges are prevalent, with significant Caddis hatches expected with a few more bright days.\n- **Fly Patterns**:\n  - **Nymphs**: San Juan Worm, Jigged Tungsten Red-Tie PT, Tungsten Zebra Midge.\n  - **Dries**: Traditional Adams, Fitzsimmons's Midge Adult.\n  - **Streamers**: Tungsten Double Mint, Craven's Baby Gonga.\n- **Tactics**: Dead drift presentations are effective; work the banks where trout tend to hold.\n- **Outlook**: Conditions are favorable, though expect some changes with runoff and warming.\n\n#### Lower Roaring Fork (Carbondale to Glenwood Springs)\n- **Flow & Clarity**: Flow at 850 CFS, variable clarity\u2014clearer on cooler days, blown out after hot days.\n- **Hatches**: BWOs and Midges with emerging Caddis activity.\n- **Fly Patterns**:\n  - **Nymphs**: Cat Poop Stone, Jigged Hot Bead PT, Guide's Choice Hare's Ear.\n  - **Dries**: Missing Link Caddis, Lawson's EZ Caddis, Improved Sparkle Dun BWO.\n  - **Streamers**: Craven's Swim Coach, Circus Peanut, Hansen's Meal Ticket.\n- **Tactics**: Focus on BWOs and Caddis midday, transitioning to smaller midges in the afternoon. Off-color water can still produce good Caddis action.\n- **Outlook**: Productive stretch but monitor for spawning closures and keep an eye on flow changes.\n\n#### Additional Notes\n- **Spawning Closures**: Be mindful of closures around 3 Mile and 4 Mile Creeks in Glenwood Springs.\n- **Access**: Westbank Boat Ramp construction is complete.\n- **Environmental Considerations**: Please adhere to the \"Keep Em Wet\" philosophy to protect the fishery.\n\nThis unified report combines insights from Frying Pan Anglers, Vail Valley Anglers, and Taylor Creek Fly Shops, providing an up-to-date overview of the Roaring Fork River's fly fishing conditions.",
+      "sources": [
+        {
+          "source": "Frying Pan Anglers",
+          "title": "Frying Pan Anglers Report \u2013 Roaring Fork River",
+          "url": "https://www.fryingpananglers.com/roaring-fork-river-1",
+          "section": "Roaring Fork River",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Taylor Creek Fly Shops",
+          "title": "Roaring Fork River Report April 13 2025",
+          "url": "https://taylorcreek.com/blogs/roaring-fork-river-report/roaring-fork-river-report-april-13-2025",
+          "section": "Upper Roaring Fork",
+          "reportDate": "April 13 2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Vail Valley Anglers",
+          "title": "Vail Valley Anglers Report \u2013 Roaring Fork River",
+          "url": "https://www.vailvalleyanglers.com/roaring-fork-river-fly-fishing-report",
+          "section": "Roaring Fork River",
+          "reportDate": "April 9th, 2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "April 13 2025",
+        "April 9th, 2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "South Platte": [
+    {
+      "river": "South Platte",
+      "summary": "### South Platte River Overall Fishing Conditions Report\n\n#### General Overview\nThe South Platte River is experiencing favorable conditions this spring, with an increase in flow rates and active fish behavior across various sections. Warmer temperatures have stimulated both fish and insect activity, setting the stage for some productive fishing days ahead. The clarity is generally excellent throughout the river, offering great sight-fishing opportunities.\n\n#### Cheesman Canyon\n- **Flows & Clarity**: Flows are currently at 200 cfs, considered ideal for this section. Clarity is excellent.\n- **Hatches**: BWO hatches are starting to become more active, alongside prevalent midges. Anglers should focus on these in all life stages.\n- **Fly Patterns & Tactics**: Recommended patterns include Barr's Emerger, Slim Shady, and Top Secret midges. Nymphing is technical but rewarding, focusing on good dead drifts with 5x or 6x tippets. Dry fly fishing is decent during hatches, with patterns like Mole Fly and Parachute Adams being effective.\n- **Outlook**: As temperatures continue to rise, expect BWO hatches to intensify. Weather is volatile, with a significant storm expected soon, followed by a quick rebound to milder conditions.\n\n#### Deckers\n- **Flows & Clarity**: Flows are at a perfect 197 cfs, with excellent clarity.\n- **Hatches**: Similar to Cheesman, BWO and midge activity is noted, with the potential for great dry fly action.\n- **Fly Patterns & Tactics**: Effective nymphs include Frenchie and Slim Shady. Presentation is key, with a focus on getting flies deep and presenting good drifts. Covering ground is recommended to find active feeding fish.\n- **Outlook**: Fishing should remain strong, with the weather playing a significant role in influencing conditions this spring.\n\n#### Dream Stream (Charlie Meyers SWA)\n- **Flows & Clarity**: Flows are stable at around 106 cfs. Clarity remains excellent.\n- **Hatches**: Strong midge activity with increasing BWO presence. Fish are targeting these both on the surface and subsurface.\n- **Fly Patterns & Tactics**: Nymphing remains effective with RS2s and Slim Shady patterns. Dry fly opportunities will grow with BWO hatches. Streamers can also produce results when drifted and stripped.\n- **Outlook**: Expect active fish as weather warms, but be cautious of spawning beds. The forecast suggests variability, with potential snow impacting conditions temporarily.\n\n#### Elevenmile Canyon\n- **Flows & Clarity**: Flows steady at 86 cfs, and clarity is excellent.\n- **Hatches**: BWO and midge hatches are strong, providing good dry fly fishing opportunities.\n- **Fly Patterns & Tactics**: Nymphing remains a staple, with RS2s and Pheasant Tail nymphs being productive. During hatches, switch to dry fly patterns like Parachute Adams.\n- **Outlook**: With warming temperatures, expect more fish to move into traditional feeding lanes. Weather changes may briefly affect conditions, but overall, fishing should remain productive.\n\n#### General Advice\nAcross the South Platte River, anglers should be prepared for technical nymphing and be ready to switch to dry flies during active hatches. Covering ground and observing conditions will enhance success. Keep an eye on weather forecasts, as spring in Colorado can bring sudden changes. Always be respectful of spawning areas and tread lightly to protect the fishery. For further insights, Angler's Covey and Blue Quill Angler provide valuable local expertise.\n\nThis report synthesizes the latest information from multiple sources, including Angler's Covey and Blue Quill Angler, ensuring a comprehensive view of current fishing conditions on the South Platte River.",
+      "sources": [
+        {
+          "source": "Angler's Covey",
+          "title": "Angler's Covey Report \u2013 South Platte River (Cheesman Canyon)",
+          "url": "https://anglerscovey.com/fishing-locations/south-platte-river-cheesman-canyon/",
+          "section": "Cheesman Canyon",
+          "reportDate": "4/15/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Angler's Covey",
+          "title": "Angler's Covey Report \u2013 South Platte River (Deckers)",
+          "url": "https://anglerscovey.com/fishing-locations/south-platte-river-deckers/",
+          "section": "Deckers",
+          "reportDate": "4/15/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Angler's Covey",
+          "title": "Angler's Covey Report \u2013 South Platte River (Dream Stream)",
+          "url": "https://anglerscovey.com/fishing-locations/south-platte-river-dream-stream/",
+          "section": "Dream Stream",
+          "reportDate": "4/15/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Angler's Covey",
+          "title": "Angler's Covey Report \u2013 South Platte River (Elevenmile Canyon)",
+          "url": "https://anglerscovey.com/fishing-locations/south-platte-river-elevenmile-canyon/",
+          "section": "Elevenmile Canyon",
+          "reportDate": "4/15/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Blue Quill Angler",
+          "title": "Blue Quill Angler Report \u2013 Cheesman Canyon",
+          "url": "https://bluequillangler.com/pages/river-page-cheesman-canyon",
+          "section": "Cheesman Canyon",
+          "reportDate": "2/4/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Blue Quill Angler",
+          "title": "Blue Quill Angler Report \u2013 Dream Stream (Charlie Meyers SWA)",
+          "url": "https://bluequillangler.com/pages/river-page-charlie-meyers-swa-dream-stream",
+          "section": "Dream Stream",
+          "reportDate": "2/4/25",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 South Platte Basin",
+          "url": "https://fishcolorado.com/pages/south-platte-basin",
+          "section": "South Platte Basin",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Royal Gorge Anglers",
+          "title": "Royal Gorge Anglers Report \u2013 South Platte River",
+          "url": "https://www.royalgorgeanglers.com/fishing-reports/south-platte-river-report/",
+          "section": "General",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/15/2025",
+        "4/15/2025",
+        "4/15/2025",
+        "4/15/2025",
+        "2/4/25",
+        "2/4/25"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Williams Fork": [
+    {
+      "river": "Williams Fork",
+      "summary": "### Williams Fork River Fishing Report\n\n#### General Conditions\nThe Williams Fork River is currently flowing at 46 CFS below the Williams Fork Reservoir, with clear water conditions and temperatures in the 40-degree range. This tailwater section is renowned for its vibrant aquatic insect populations, including midges, Baetis, PMDs, and caddis. However, be prepared for a significant mosquito presence, especially during peak seasons, so appropriate protective measures such as DEET and bug nets are advisable.\n\n#### Specific Section: Tailwater Below the Dam\nThe tailwater section is the primary focus, offering excellent fishing opportunities when flow rates attract fish from the Colorado River. At the current flow, fish are more cautious, necessitating a stealthy approach to avoid spooking them. \n\n#### Tactics and Fly Patterns\n- **Nymphing:** A light nymph rig is recommended, with a two or three-fly setup being particularly effective. Utilize light tippets and small flies due to the low, clear water conditions.\n- **Dry Flies:** Strong hatches can occasionally support dry fly action, especially during warmer parts of the day.\n- **Streamers:** Streamer fishing, while more productive in the fall, can still be effective with patterns like Chou\u2019s Fortune Cookie and Sculpzilla.\n\n**Recommended Fly Patterns:**\n- **Nymphs:** Beadhead Pheasant Tail (Size 16-20), WD-40 (Grey, Size 18-24), Mayer's Tube Midge (Black, Size 18-22)\n- **Dry Flies:** Parachute Adams (Size 12-24), Parachute Extended Body BWO (Size 16-22)\n- **Streamers:** Bread and Butter Bugger (Size 04-06)\n\n#### Outlook\nAs we move through spring, midges and baetis will remain the staple insects for anglers, with the possibility of increasing dry fly opportunities as temperatures rise. The low flows suggest that fish will continue to be wary, so maintaining a stealthy presence will be critical for success.\n\n#### Additional Insights\nThis report is based on the latest update from FishColorado (as of April 14, 2025). For more detailed guidance or local knowledge, consider reaching out to Cutthroat Anglers in Silverthorne, CO. They can provide further insights and recommendations tailored to current conditions on the Williams Fork River.",
+      "sources": [
+        {
+          "source": "FishColorado",
+          "title": "FishColorado Report \u2013 Williams Fork River",
+          "url": "https://fishcolorado.com/pages/williams-fork-river",
+          "section": "Williams Fork River",
+          "reportDate": "4/14/25",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/14/25"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Yakima": [
+    {
+      "river": "Yakima",
+      "summary": "### Yakima River Fishing Report - April 2025\n\n#### General Conditions\nThe Yakima River is currently experiencing favorable fishing conditions as spring progresses. Recent reports indicate that while high water levels have temporarily slowed fishing, conditions are expected to improve as the flows stabilize. Water flow is at 2,440 cfs at Umtanum, with water temperatures ranging from 43 to 49\u00b0F. Visibility is approximately 24 inches with a green tint, offering good conditions for anglers. \n\n#### Hatches and Fly Patterns\n- **Skwala Stoneflies**: This hatch is at its peak but will start slowing down soon. Skwala dry flies are effective in the afternoon, especially along shaded banks.\n- **March Browns**: These are beginning to emerge and should be more consistent in coming weeks, particularly in the Upper Lower Canyon and Farmlands sections.\n- **Blue Winged Olives (Baetis)**: Daily hatches are occurring, so having an assortment of Baetis dries and nymphs is beneficial.\n- **Worm Patterns**: San Juan and Squirmy worms are recommended, especially during high water conditions.\n- **Streamers**: Olive streamers and sculpins (#6-#8) are useful, particularly when targeting deeper areas or during periods of slower nymphing.\n\n#### Tactics\n- **Nymphing**: Most productive in the mornings. Use #6-#4 stonefly patterns and mayfly nymphs (#14-#16) to match the current hatches.\n- **Dry Fly Fishing**: Picks up as the day warms. Keep an eye on foam lines for surface activity.\n- **Streamer Fishing**: Use streamers when the water is high or when targeting larger fish in deeper pools.\n\n#### Specific Sections\n- **Lower Canyon**: Offers solid wade fishing opportunities. A stealthy dry-wading approach with short casts and tight drifts can be effective.\n- **Farmlands**: March Browns are showing more consistently, making it a good section for targeting emerging hatches.\n\n#### Guide Services and Fly Shops\n- **Avid Angler**: Recommends a mixed approach with nymphs and dries, and suggests streamers and worms for elevated water levels.\n- **Evening Hatch**: Reports productive fishing on all river stretches with a focus on Skwala and Blue Winged Olives.\n- **Red's Fly Fishing**: Emphasizes the importance of adapting to daily conditions and offers guided trips to maximize on-the-water success.\n\n#### Outlook\nAs spring continues, anticipate more consistent hatches and improving fishing conditions as the water levels drop. Stay updated on flow conditions and adjust tactics accordingly. With the mid to late stages of the trout spawn, be mindful of fish handling to ensure conservation.\n\nFor those planning a trip, consider checking in with local fly shops or guide services for the most up-to-date information. Happy fishing!",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Evening Hatch",
+          "title": "North Washington guide service",
+          "url": "https://theeveninghatch.com/reports",
+          "section": "General",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        },
+        {
+          "source": "Red's Fly Fishing",
+          "title": "YAKIMA RIVER FISHING REPORT // APRIL 11TH, 2025",
+          "url": "https://redsflyfishing.com/blogs/yakima-river-fishing-report/yakima-river-report",
+          "section": "General",
+          "reportDate": null,
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Snoqualmie": [
+    {
+      "river": "Snoqualmie",
+      "summary": "### Snoqualmie River Fishing Report\n\n#### General Conditions\nFishing on the Snoqualmie River currently varies by section, with the downstream portion from the forks closed until later in April. Anglers should focus their efforts on the upper forks where trout fishing is viable. As we transition into spring, snowmelt significantly impacts water levels and can influence fishing conditions.\n\n#### Specific Sections\n\n- **Upper Forks**: This area is open to fishing and can provide some rewarding trout experiences. Currently, the fishing success largely relies on nymph patterns and small streamers, although there are occasional opportunities for dry fly action as a few fish start to surface.\n\n#### Flow and Clarity\nThe flow in the upper forks is subject to fluctuations due to snowmelt. Anglers should consistently monitor water levels, as high flows can make fishing challenging and affect water clarity.\n\n#### Hatches\nWhile there might be some early-season hatches beginning to appear, the primary focus should remain on subsurface flies given the current conditions.\n\n#### Fly Patterns\n- **Nymph Patterns**: These remain the most effective choice. Bead-head nymphs and other similar patterns should produce results.\n- **Small Streamers**: Useful for covering water and enticing trout.\n- **Dry Flies**: Look for sporadic rises, but keep expectations modest for dry fly action at this time.\n\n#### Tactics\nGiven the current conditions, anglers should prioritize nymphing techniques and small streamers. Pay attention to water levels due to snowmelt when planning your approach.\n\n#### Access\nAccess to the upper forks is crucial since the downstream section remains closed. Verify closures and access points before heading out.\n\n#### Outlook\nAs snowmelt continues, water levels will remain dynamic, potentially improving as the season progresses. Keep an eye on weather patterns and water conditions for the best chances of success.\n\nFor those planning to fish the Snoqualmie, staying informed about water conditions and closures is essential. This report is based on recent insights from Avid Angler as of April 2nd, 2025.",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Skagit": [
+    {
+      "river": "Skagit",
+      "summary": "**Skagit River Fishing Report Summary - April 2025**\n\n**General Fishing Conditions:**\nThe Skagit River is currently experiencing favorable conditions for steelhead fishing as we approach the end of the season. Recent rainfall combined with the onset of snowmelt has increased river flow, bringing more steelhead into the system. Anglers have reported success in landing some nice fish, and this trend is expected to continue in the coming weeks.\n\n**Flow and Clarity:**\nThe river flow is higher due to recent rains and melting snow, which is typical for this time of year. The increased flow has improved fish movement, though anglers should be mindful of higher water levels and potential changes in clarity. As conditions can vary, it\u2019s important to assess the river's clarity on arrival and adjust tactics accordingly.\n\n**Hatches and Fly Patterns:**\nAs the steelhead are spending longer periods in freshwater, they may start to show preferences for more subdued fly patterns. Natural and drab colors are recommended during this part of the season. This adjustment can be crucial for enticing strikes from these fish as they settle into their freshwater environment.\n\n**Tactics:**\nGiven the current conditions, anglers should consider varying their approach in terms of fly selection and presentation. Using more natural colors can prove beneficial. Additionally, be patient and methodical in your fishing technique, focusing on areas where fish are likely to hold in the higher water.\n\n**Access:**\nAccess points along the Skagit River remain open, but anglers should exercise caution given the increased flow. Always prioritize safety and be prepared for variable conditions.\n\n**Outlook:**\nThe outlook for the remainder of the steelhead season on the Skagit River is positive, with continued opportunities to catch fish as the season progresses towards closure. Anglers are encouraged to take advantage of the current conditions and to handle all fish with care to ensure their health and survival.\n\n**Acknowledgment:**\nThis report draws insights from Avid Angler, highlighting the importance of adjusting fly patterns and respecting the fish during this transition period.",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Sauk": [
+    {
+      "river": "Sauk",
+      "summary": "**Sauk River Fishing Report Summary**\n\n**General Fishing Conditions:**\nThe Sauk River is currently experiencing good fishing conditions and is expected to maintain this status as the season progresses. Recent increases in water levels, similar to those observed on the Skagit River, have encouraged the arrival of more fresh fish. With the season nearing its end, anglers can expect a steady trickle of fish, making this period particularly rewarding for those who choose to venture out.\n\n**River Sections:**\nNo specific sections were mentioned in the recent reports; therefore, this summary applies to the Sauk River as a whole.\n\n**Flow and Clarity:**\nThe recent upticks in water levels have improved the river's fishability. While no specific clarity conditions were mentioned, anglers should be prepared for the usual spring fluctuations in clarity due to runoff and rain events.\n\n**Hatches:**\nThere were no specific hatches mentioned in the current reports. However, as the season progresses, anglers should pay attention to any emerging insect activity that might influence fish behavior.\n\n**Fly Patterns and Tactics:**\nAs the season advances and fish spend more time in freshwater, they may begin to exhibit more trout-like behaviors. This is a prime opportunity to experiment with fly patterns. Natural and drab-colored flies are recommended as they may prove effective under these conditions. Anglers are encouraged to adjust their tactics accordingly and consider varying their presentations to match the fish's changing preferences.\n\n**Access:**\nWhile no specific access points were discussed in the recent reports, anglers should be familiar with the usual access areas along the Sauk River and adjust their plans based on current conditions and any access restrictions.\n\n**Outlook:**\nThe outlook for the Sauk River remains positive. With a continuous influx of fresh fish and favorable conditions expected to persist, anglers should take advantage of the remaining days of the season. The opportunity to catch fish that are transitioning to their \"trouty\" tendencies adds an interesting dynamic to the overall fishing experience.\n\n**Conclusion:**\nAnglers fishing the Sauk River can expect productive outings as the season draws to a close. By adapting fly patterns and tactics to suit the fish's evolving behavior, anglers can enhance their chances of success. Remember to handle fish with care and ensure they are released safely back into the river.",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Skykomish": [
+    {
+      "river": "Skykomish",
+      "summary": "**Skykomish River Fishing Report - April 2025**\n\n**General Fishing Conditions:**\nAs of the latest update from Avid Angler on April 2, 2025, the Skykomish River is currently closed for fishing. Due to this closure, specific fishing conditions, such as flow, clarity, hatches, and fly patterns, are not applicable at this time. Anglers should remain informed about potential reopening dates and any regulatory changes by checking with local authorities or trusted fly shops.\n\n**Section-Specific Callouts:**\nNo specific sections of the Skykomish River, such as Deckers or Cheesman, have been reported in the latest updates due to the overall closure.\n\n**Unique Insights from Sources:**\nThere are no unique insights from the current sources beyond the closure status. As more information becomes available, particularly from local fly shops or guide services, it will be important to stay updated for any changes in conditions or regulations.\n\n**Flow/Clarity:**\nDue to the closure, there is no current information on the river's flow and clarity. Anglers should monitor weather patterns and local updates for potential impacts on these conditions once the river reopens.\n\n**Hatches and Fly Patterns:**\nCurrent hatching activity and recommended fly patterns have not been reported due to the fishing closure. Typically, during this time of year, anglers might expect to see early spring hatches, such as March Browns or early caddis, but specific conditions should be verified once the river is open again.\n\n**Tactics:**\nWith the river closed, no current fishing tactics are advised. However, once open, anglers should be prepared to adapt their techniques based on the river conditions and any observed insect activity.\n\n**Access:**\nAccess to the Skykomish River is currently restricted due to the fishing closure. Anglers should verify access points and any restrictions with local authorities or fly shops once the river reopens.\n\n**Outlook:**\nThe outlook for the Skykomish River will depend on updates from local fish and wildlife authorities regarding the status of the closure. Anglers are encouraged to stay informed through local fly shops and official channels to ensure compliance and readiness for when fishing resumes.\n\nFor the most up-to-date information, continue to monitor trusted sources such as Avid Angler and other local outfitters.",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ],
+  "Stillaguamish": [
+    {
+      "river": "Stillaguamish",
+      "summary": "**Stillaguamish River Fishing Report - April 2025**\n\n**General Fishing Conditions:**\nThe Stillaguamish River is currently closed for fishing. It is important for anglers to stay updated on the status of the river's opening, as conditions and regulations can change. As of now, there are no fishing activities permitted on the Stillaguamish.\n\n**Flow and Clarity:**\nDue to the closure, there are no recent reports on the flow and clarity of the river. Anglers should keep an eye on updates from local authorities or fly shops for any changes in these conditions once the river reopens.\n\n**Hatches and Fly Patterns:**\nThere are no current reports on hatches or recommended fly patterns due to the closure. Typically, this time of year may see some early-season hatches, but anglers should wait for official reports once fishing resumes.\n\n**Tactics and Access:**\nAccess points and tactics are not relevant at this time due to the river being closed. Once the river reopens, anglers should research specific sections and access points for any unique conditions or tactics that might be effective.\n\n**Outlook:**\nThe outlook for fishing on the Stillaguamish River is currently on hold until the river reopens. It is advisable for anglers to frequently check with local fly shops or online resources for the latest updates on the river's status.\n\n**Summary:**\nIn summary, the Stillaguamish River is closed for fishing as of the latest report from Avid Angler on April 2, 2025. Anglers are encouraged to stay informed on any changes to the river's status and to prepare for fishing conditions once the closure is lifted.",
+      "sources": [
+        {
+          "source": "Avid Angler",
+          "title": "Avid Angler - 4/2/2025",
+          "url": "https://avidangler.com/fishing-reports",
+          "section": "General",
+          "reportDate": "4/2/2025",
+          "lastUpdated": "2025-04-16"
+        }
+      ],
+      "reportDates": [
+        "4/2/2025"
+      ],
+      "lastUpdated": "2025-04-16"
+    }
+  ]
 }

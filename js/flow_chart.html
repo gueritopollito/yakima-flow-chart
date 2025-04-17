@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>South Platte River – Deckers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+      margin: 2rem;
+    }
+
+    .dashboard-container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .header h2 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #6b7280;
+      margin-top: 0;
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tile {
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tile .label {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+
+    .tile .value {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="header">
+      <h1>South Platte River</h1>
+      <h2>Deckers, CO</h2>
+    </div>
+
+    <div class="tiles">
+      <div class="tile flow">
+        <div class="label">FLOW</div>
+        <div class="value">...</div>
+      </div>
+      <div class="tile temp">
+        <div class="label">WATER TEMP</div>
+        <div class="value">...</div>
+      </div>
+      <div class="tile gauge">
+        <div class="label">GAUGE HEIGHT</div>
+        <div class="value">...</div>
+      </div>
+      <div class="tile wind">
+        <div class="label">WIND</div>
+        <div class="value">...</div>
+      </div>
+      <div class="tile highlow">
+        <div class="label">HIGH / LOW</div>
+        <div class="value">...</div>
+      </div>
+    </div>
+
+    <!-- Placeholder for chart later -->
+    <!-- <canvas id="flowChart" height="300"></canvas> -->
+  </div>
+
+  <script type="module" src="./flow_chart.js"></script>
+</body>
+</html>
