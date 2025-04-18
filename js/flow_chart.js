@@ -5,35 +5,30 @@ const siteId = '06701900'; // South Platte River at Trumbull (your primary site)
 const siteLat = 39.3897;
 const siteLon = -105.2272;
 
-async function fetchNOAAWeather(lat, lon) {
+// ⬇️ Your WeatherAPI key
+const weatherApiKey = 'fc06248d0bfe4dbeb4f31014251804'; // <-- Replace with your real WeatherAPI key
+
+async function fetchWeatherAPI(lat, lon) {
   try {
-    const pointRes = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
-    const pointData = await pointRes.json();
-    const stationUrl = pointData.properties.observationStations;
-
-    const stationRes = await fetch(stationUrl);
-    const stationData = await stationRes.json();
-    const stationId = stationData.features[0].properties.stationIdentifier;
-
-    const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`);
-    const obsData = await obsRes.json();
-
-    const temp = obsData.properties.temperature.value;
-    const wind = obsData.properties.windSpeed.value;
-    const rawHigh = obsData.properties.maxTemperatureLast24Hours?.value;
-    const rawLow = obsData.properties.minTemperatureLast24Hours?.value;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${lat},${lon}`;
+    const response = await fetch(url);
+    const data = await response.json();
 
     return {
-      airTemp: temp !== null ? (temp * 9/5 + 32).toFixed(1) : null,
-      windSpeed: wind !== null ? (wind * 2.23694).toFixed(1) : null,
-      highTemp: rawHigh !== null ? (rawHigh * 9/5 + 32).toFixed(0) : null,
-      lowTemp: rawLow !== null ? (rawLow * 9/5 + 32).toFixed(0) : null
+      airTemp: data.current.temp_f,
+      windSpeed: data.current.wind_mph,
+      condition: data.current.condition.text,
+      feelsLike: data.current.feelslike_f,
+      highTemp: null, // WeatherAPI free plan doesn't give 24h high/low easily
+      lowTemp: null
     };
   } catch (err) {
-    console.error('NOAA fetch failed:', err);
+    console.error('WeatherAPI fetch failed:', err);
     return {
       airTemp: null,
       windSpeed: null,
+      condition: null,
+      feelsLike: null,
       highTemp: null,
       lowTemp: null
     };
@@ -42,7 +37,7 @@ async function fetchNOAAWeather(lat, lon) {
 
 async function populateTiles() {
   const usgs = await getCurrentFlow(siteId);
-  const noaa = await fetchNOAAWeather(siteLat, siteLon);
+  const weather = await fetchWeatherAPI(siteLat, siteLon);
 
   // Populate FLOW
   document.querySelector('.tile.flow .value').innerHTML = (usgs.flow !== null)
@@ -82,19 +77,24 @@ async function populateTiles() {
   }
 
   // Populate WIND SPEED
-  document.querySelector('.tile.wind .value').innerHTML = (noaa.windSpeed !== null)
-    ? `${noaa.windSpeed} <span style="font-size:0.8rem;">mph</span>`
+  document.querySelector('.tile.wind .value').innerHTML = (weather.windSpeed !== null)
+    ? `${weather.windSpeed.toFixed(1)} <span style="font-size:0.8rem;">mph</span>`
     : 'N/A';
 
-  // Populate HIGH / LOW
-  const highlowElement = document.querySelector('.tile.highlow .value');
-  if (noaa.highTemp !== null && noaa.lowTemp !== null) {
-    highlowElement.innerHTML = `${noaa.highTemp}° / ${noaa.lowTemp}°<span style="font-size:0.8rem;">F</span>`;
-  } else if (noaa.airTemp !== null) {
-    highlowElement.innerHTML = `${noaa.airTemp}<span style="font-size:0.8rem;">°F</span>`;
+  // Populate AIR TEMP
+  const airtempElement = document.querySelector('.tile.airtemp .value');
+  if (weather.airTemp !== null) {
+    airtempElement.innerHTML = `${weather.airTemp.toFixed(1)}<span style="font-size:0.8rem;">°F</span>`;
   } else {
-    highlowElement.textContent = 'N/A';
+    airtempElement.textContent = 'N/A';
   }
+  // Populate WEATHER CONDITION
+  const conditionElement = document.querySelector('.tile.condition .value .condition-value');
+if (weather.condition !== null) {
+  conditionElement.textContent = weather.condition;
+} else {
+  conditionElement.textContent = 'N/A';
+}
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
