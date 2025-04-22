@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>River Intel</title>
 
-
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
   <!-- Google Fonts: Sleek, masculine header -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
@@ -28,6 +26,7 @@
   <script type="module" src="js/yakima.js" defer></script>
 
   <style>
+    /* Base styles */
     body {
       margin: 0;
       padding: 0;
@@ -38,7 +37,6 @@
       background-repeat: no-repeat;
       font-family: sans-serif;
     }
-
     .content-wrapper {
       max-width: 1200px;
       margin: auto;
@@ -47,30 +45,25 @@
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
-
     h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 2.5rem;
       text-align: center;
       margin-bottom: 0.5rem;
     }
-
     #currentFlow {
       text-align: center;
       font-weight: bold;
       margin-bottom: 1rem;
     }
-
     #filter-buttons {
       text-align: center;
       margin: 1rem 0;
     }
-
     #map {
       height: 400px;
       margin-bottom: 2rem;
     }
-
     #river-summary {
       flex: 1 1 400px;
       max-width: 600px;
@@ -80,11 +73,9 @@
       box-shadow: 0 0 4px rgba(0,0,0,0.1);
       font-size: 1rem;
     }
-
     .chart-box {
       flex: 1 1 400px;
     }
-
     .chart-container {
       display: flex;
       flex-wrap: wrap;
@@ -92,24 +83,47 @@
       justify-content: space-between;
       margin-bottom: 2rem;
     }
+
+    /* Responsive SVG container */
+    #logo-container svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* Animate only direct child paths */
+    #logo-container svg > path {
+      fill: none;
+      stroke: black;
+      stroke-width: 2;
+    }
+
+    /* Keyframes for drawing and filling */
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes fillFade {
+      from { fill: none; opacity: 0; }
+      to   { fill: black; opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <div class="content-wrapper">
     <div class="logo-header">
       <a href="index.html">
-        <img src="images/logo.png" alt="RiverIntel logo" />
+        <!-- SVG injection point -->
+        <div id="logo-container"></div>
       </a>
     </div>
 
-     <!-- State Filters -->
-     <div id="state-buttons" style="text-align: center; margin: 1rem 0;"></div>
-     <div id="reset-button-container" style="text-align:center; margin-bottom: 1rem;"></div>
+    <!-- State Filters -->
+    <div id="state-buttons" style="text-align: center; margin: 1rem 0;"></div>
+    <div id="reset-button-container" style="text-align:center; margin-bottom: 1rem;"></div>
     <p style="text-align: center; font-size: 1.1rem; font-weight: 300; margin-top: -0.5rem; margin-bottom: 1.5rem;">
       The latest conditions, flow charts from USGS, and summarized fly fishing reports for your favorite Western Washington rivers.
     </p>
-
-   
 
     <div id="currentFlow">Loading current flow...</div>
 
@@ -119,10 +133,8 @@
         <div id="filter-buttons"></div>
         <div id="river-summary"></div>
       </div>
-
       <div class="right-side">
         <div id="map"></div>
-
         <div id="yakimaFlowChartContainer" class="chart-box">
           <div id="sevenDayTitle" style="text-align:center">Past 7 Days</div>
           <div id="sevenDayPrompt" style="display: none; padding: 2rem; text-align: center; font-size: 1rem; color: #333;">
@@ -144,6 +156,45 @@
       </div>
     </div>
   </div>
-</body>
 
+  <!-- SVG fetch & animate -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('images/logo-animation.svg')
+        .then(r => r.text())
+        .then(svgText => {
+          const container = document.getElementById('logo-container');
+          container.innerHTML = svgText;
+
+          // select only top-level paths
+          const paths = Array.from(
+            container.querySelectorAll('svg > path')
+          );
+          const speed = 4200; // px per second
+          const fade  = 1;    // seconds for fillFade
+
+          // initialize dash lengths & compute durations
+          const durations = paths.map(p => {
+            const L = p.getTotalLength();
+            p.style.strokeDasharray  = L;
+            p.style.strokeDashoffset = L;
+            return L / speed;
+          });
+          const maxDur = Math.max(...durations);
+
+          // apply animations
+          paths.forEach((p,i) => {
+            p.style.animation = `
+              draw     ${durations[i]}s ease-out    0s            forwards,
+              fillFade ${fade}s        linear ${maxDur}s forwards
+            `;
+          });
+
+          // allow overflow for the SVG
+          container.querySelector('svg').style.overflow = 'visible';
+        })
+        .catch(console.error);
+    });
+  </script>
+</body>
 </html>
