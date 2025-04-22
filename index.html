@@ -114,19 +114,21 @@
 
 
     #logo-container svg > path {
-      fill: none;
-      stroke: black;
-      stroke-width: 2;
-    }
+  fill: black; /* or your desired color */
+  stroke: black;
+  stroke-width: 2;
+  opacity: 0; /* initially hidden */
+}
 
-    @keyframes draw {
-      to { stroke-dashoffset: 0; }
-    }
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
 
-    @keyframes fillFade {
-      from { fill: none; opacity: 0; }
-      to   { fill: black; opacity: 1; }
-    }
+@keyframes fillFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
   </style>
 </head>
 <body>
@@ -191,10 +193,9 @@
           }
   
           const paths = Array.from(container.querySelectorAll('svg > path'));
-          const speed = 4200; // pixels per second
+          const speed = 4200; // pixels per second for stroke drawing
           const fade = 1;     // seconds for fill fade
   
-          // Wait for the browser to paint after inserting SVG
           requestAnimationFrame(() => {
             const durations = paths.map(p => {
               const L = p.getTotalLength();
@@ -224,8 +225,7 @@
         headerBg.style.transform = `translateY(${scrolled * 0.3}px)`;
       }
     });
-  </script>
+  </script>  
   
-
 </body>
 </html>
