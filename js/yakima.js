@@ -122,7 +122,7 @@ function createStateButtons(containerId, onStateSelect) {
           </p>
         </div>
       `;
-      document.getElementById('currentFlow').innerHTML = `Select a river above to see current flow data.`;
+      document.getElementById('currentFlow').innerHTML = `Select a river below to see current flow data.`;
     
       // Clear charts
       hide7DayChart();

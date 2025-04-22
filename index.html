@@ -30,9 +30,6 @@
       height: 600px;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .header-bg {
@@ -47,6 +44,52 @@
       z-index: -1;
     }
 
+    .logo-header {
+      position: absolute;
+      top: 40px;
+      left: 80px;
+      width: 400px; /* fixed width */
+      min-width: 300px; /* prevent collapse */
+      min-height: 100px; /* or something appropriate */
+    }
+
+
+    .header-text {
+  position: absolute;
+  bottom: 40px; 
+  right: 30px; 
+  width: 33%; 
+  height: 33%; 
+  padding: 30px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+
+  /* New animation properties: */
+  transform: translateX(150%); /* Start off screen to the right */
+  opacity: 0; /* Start invisible */
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+/* New: when visible */
+.header-text.visible {
+  transform: translateX(0); /* Slide into place */
+  opacity: 1; /* Fade in */
+}
+
+
+.header-text h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem; /* smaller font size */
+  font-weight: 550;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+
     .content-wrapper {
       max-width: 1200px;
       margin: auto;
@@ -56,7 +99,7 @@
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
+    h2 {
       font-family: 'Oswald', sans-serif;
       font-size: 2.5rem;
       text-align: center;
@@ -101,34 +144,26 @@
       margin-bottom: 2rem;
     }
 
-    .logo-header {
-      max-width: 600px;
-      width: 100%;
-    }
-
     #logo-container svg {
       width: 100%;
       height: auto;
     }
 
-
-
     #logo-container svg > path {
-  fill: black; /* or your desired color */
-  stroke: black;
-  stroke-width: 2;
-  opacity: 0; /* initially hidden */
-}
+      fill: black;
+      stroke: black;
+      stroke-width: 2;
+      opacity: 0;
+    }
 
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
-}
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
 
-@keyframes fillFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
+    @keyframes fillFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -140,13 +175,17 @@
         <div id="logo-container"></div>
       </a>
     </div>
+    <div class="header-text">
+      <h1>Real-Time Fishing Intel. Expert Reports. Smarter Days on the Water.</h1>
+      
+    </div>
   </div>
 
   <div class="content-wrapper">
     <div id="state-buttons" style="text-align: center; margin: 1rem 0;"></div>
     <div id="reset-button-container" style="text-align:center; margin-bottom: 1rem;"></div>
     <p style="text-align: center; font-size: 1.1rem; font-weight: 300; margin-top: -0.5rem; margin-bottom: 1.5rem;">
-      The latest conditions, flow charts from USGS, and summarized fly fishing reports for your favorite Western Washington rivers.
+      Get daily expert summaries of the best fishing reports across the country, real-time river and weather data, and insider conditions — all in one place. Save your favorite rivers, set alerts, and fish smarter. 
     </p>
 
     <div id="currentFlow">Loading current flow...</div>
@@ -161,7 +200,7 @@
         <div id="yakimaFlowChartContainer" class="chart-box">
           <div id="sevenDayTitle" style="text-align:center">Past 7 Days</div>
           <div id="sevenDayPrompt" style="display: none; padding: 2rem; text-align: center; font-size: 1rem; color: #333;">
-            Select a river above to view recent flow data.
+            Select a river below to view recent flow data.
           </div>
           <canvas id="yakimaFlowChart" style="display: block;"></canvas>
         </div>
@@ -186,16 +225,16 @@
         .then(svgText => {
           const container = document.getElementById('logo-container');
           container.innerHTML = svgText;
-  
+
           const svg = container.querySelector('svg');
           if (svg) {
             svg.style.overflow = 'visible';
           }
-  
+
           const paths = Array.from(container.querySelectorAll('svg > path'));
-          const speed = 4200; // pixels per second for stroke drawing
-          const fade = 1;     // seconds for fill fade
-  
+          const speed = 16000;
+          const fade = 1;
+
           requestAnimationFrame(() => {
             const durations = paths.map(p => {
               const L = p.getTotalLength();
@@ -203,9 +242,9 @@
               p.style.strokeDashoffset = L;
               return L / speed;
             });
-  
+
             const maxDur = Math.max(...durations);
-  
+
             paths.forEach((p, i) => {
               p.style.animation = `
                 draw     ${durations[i]}s ease-out    0s            forwards,
@@ -216,8 +255,7 @@
         })
         .catch(console.error);
     });
-  
-    // Parallax scroll effect for header background
+
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
       const headerBg = document.querySelector('.header-bg');
@@ -225,7 +263,23 @@
         headerBg.style.transform = `translateY(${scrolled * 0.3}px)`;
       }
     });
-  </script>  
-  
+
+    window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const headerBg = document.querySelector('.header-bg');
+  if (headerBg) {
+    headerBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+  }
+
+  const headerText = document.querySelector('.header-text');
+  if (headerText && !headerText.classList.contains('visible')) {
+    if (scrolled > 0) { // You can adjust when it triggers
+      headerText.classList.add('visible');
+    }
+  }
+});
+
+  </script>
+
 </body>
 </html>
