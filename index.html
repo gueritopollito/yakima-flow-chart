@@ -6,27 +6,15 @@
   <title>River Intel</title>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Google Fonts: Sleek, masculine header -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <!-- Chart.js + Plugins -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
-
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Your JavaScript -->
   <script type="module" src="js/yakima.js" defer></script>
 
   <style>
-    /* Base styles */
     body {
       margin: 0;
       padding: 0;
@@ -37,6 +25,28 @@
       background-repeat: no-repeat;
       font-family: sans-serif;
     }
+
+    .header {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/header.jpg') center center no-repeat;
+      background-size: cover;
+      will-change: transform;
+      z-index: -1;
+    }
+
     .content-wrapper {
       max-width: 1200px;
       margin: auto;
@@ -45,25 +55,30 @@
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 2.5rem;
       text-align: center;
       margin-bottom: 0.5rem;
     }
+
     #currentFlow {
       text-align: center;
       font-weight: bold;
       margin-bottom: 1rem;
     }
+
     #filter-buttons {
       text-align: center;
       margin: 1rem 0;
     }
+
     #map {
       height: 400px;
       margin-bottom: 2rem;
     }
+
     #river-summary {
       flex: 1 1 400px;
       max-width: 600px;
@@ -73,9 +88,11 @@
       box-shadow: 0 0 4px rgba(0,0,0,0.1);
       font-size: 1rem;
     }
+
     .chart-box {
       flex: 1 1 400px;
     }
+
     .chart-container {
       display: flex;
       flex-wrap: wrap;
@@ -84,7 +101,6 @@
       margin-bottom: 2rem;
     }
 
-    /* Responsive SVG container */
     #logo-container svg {
       display: block;
       width: 100%;
@@ -92,17 +108,16 @@
       overflow: visible;
     }
 
-    /* Animate only direct child paths */
     #logo-container svg > path {
       fill: none;
       stroke: black;
       stroke-width: 2;
     }
 
-    /* Keyframes for drawing and filling */
     @keyframes draw {
       to { stroke-dashoffset: 0; }
     }
+
     @keyframes fillFade {
       from { fill: none; opacity: 0; }
       to   { fill: black; opacity: 1; }
@@ -110,15 +125,17 @@
   </style>
 </head>
 <body>
-  <div class="content-wrapper">
+
+  <div class="header">
+    <div class="header-bg"></div>
     <div class="logo-header">
       <a href="index.html">
-        <!-- SVG injection point -->
         <div id="logo-container"></div>
       </a>
     </div>
+  </div>
 
-    <!-- State Filters -->
+  <div class="content-wrapper">
     <div id="state-buttons" style="text-align: center; margin: 1rem 0;"></div>
     <div id="reset-button-container" style="text-align:center; margin-bottom: 1rem;"></div>
     <p style="text-align: center; font-size: 1.1rem; font-weight: 300; margin-top: -0.5rem; margin-bottom: 1.5rem;">
@@ -127,7 +144,6 @@
 
     <div id="currentFlow">Loading current flow...</div>
 
-    <!-- 2-column layout -->
     <div class="main-grid">
       <div class="left-side">
         <div id="filter-buttons"></div>
@@ -145,7 +161,6 @@
       </div>
     </div>
 
-    <!-- Year Chart Full Width -->
     <div class="chart-container">
       <div class="chart-box">
         <h2 id="yearTitle" style="text-align:center">Past Year</h2>
@@ -157,7 +172,6 @@
     </div>
   </div>
 
-  <!-- SVG fetch & animate -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       fetch('images/logo-animation.svg')
@@ -166,14 +180,10 @@
           const container = document.getElementById('logo-container');
           container.innerHTML = svgText;
 
-          // select only top-level paths
-          const paths = Array.from(
-            container.querySelectorAll('svg > path')
-          );
-          const speed = 4200; // px per second
-          const fade  = 1;    // seconds for fillFade
+          const paths = Array.from(container.querySelectorAll('svg > path'));
+          const speed = 4200;
+          const fade  = 1;
 
-          // initialize dash lengths & compute durations
           const durations = paths.map(p => {
             const L = p.getTotalLength();
             p.style.strokeDasharray  = L;
@@ -182,7 +192,6 @@
           });
           const maxDur = Math.max(...durations);
 
-          // apply animations
           paths.forEach((p,i) => {
             p.style.animation = `
               draw     ${durations[i]}s ease-out    0s            forwards,
@@ -190,11 +199,20 @@
             `;
           });
 
-          // allow overflow for the SVG
           container.querySelector('svg').style.overflow = 'visible';
         })
         .catch(console.error);
     });
+
+    // Simple parallax scroll effect for header background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const headerBg = document.querySelector('.header-bg');
+      if (headerBg) {
+        headerBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+    });
   </script>
+
 </body>
 </html>
