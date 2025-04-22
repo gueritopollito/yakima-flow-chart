@@ -164,6 +164,32 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
+
+    @media (max-width: 768px) {
+      .logo-header {
+        top: 20px;
+        left: 20px;
+        width: 250px; /* smaller logo */
+        min-width: 200px;
+        min-height: 80px;
+      }
+
+  .header-text {
+    bottom: 20px;
+    right: 20px;
+    width: 80%; /* take up more width but controlled */
+    height: auto; /* let it grow naturally with text */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* slightly darker for mobile readability */
+  }
+
+  .header-text h1 {
+      font-size: 1.4rem; /* smaller text size for mobile */
+      line-height: 1.4; /* slightly tighter lines */
+    }
+}
+
+
   </style>
 </head>
 <body>
