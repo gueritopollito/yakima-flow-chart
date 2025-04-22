@@ -27,7 +27,7 @@
     }
 
     .header {
-      height: 250px;
+      height: 600px;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -101,12 +101,17 @@
       margin-bottom: 2rem;
     }
 
+    .logo-header {
+      max-width: 600px;
+      width: 100%;
+    }
+
     #logo-container svg {
-      display: block;
       width: 100%;
       height: auto;
-      overflow: visible;
     }
+
+
 
     #logo-container svg > path {
       fill: none;
@@ -174,37 +179,44 @@
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      fetch('images/logo-animation.svg')
+      fetch('images/logo.svg')
         .then(r => r.text())
         .then(svgText => {
           const container = document.getElementById('logo-container');
           container.innerHTML = svgText;
-
+  
+          const svg = container.querySelector('svg');
+          if (svg) {
+            svg.style.overflow = 'visible';
+          }
+  
           const paths = Array.from(container.querySelectorAll('svg > path'));
-          const speed = 4200;
-          const fade  = 1;
-
-          const durations = paths.map(p => {
-            const L = p.getTotalLength();
-            p.style.strokeDasharray  = L;
-            p.style.strokeDashoffset = L;
-            return L / speed;
+          const speed = 4200; // pixels per second
+          const fade = 1;     // seconds for fill fade
+  
+          // Wait for the browser to paint after inserting SVG
+          requestAnimationFrame(() => {
+            const durations = paths.map(p => {
+              const L = p.getTotalLength();
+              p.style.strokeDasharray = L;
+              p.style.strokeDashoffset = L;
+              return L / speed;
+            });
+  
+            const maxDur = Math.max(...durations);
+  
+            paths.forEach((p, i) => {
+              p.style.animation = `
+                draw     ${durations[i]}s ease-out    0s            forwards,
+                fillFade ${fade}s        linear ${maxDur}s forwards
+              `;
+            });
           });
-          const maxDur = Math.max(...durations);
-
-          paths.forEach((p,i) => {
-            p.style.animation = `
-              draw     ${durations[i]}s ease-out    0s            forwards,
-              fillFade ${fade}s        linear ${maxDur}s forwards
-            `;
-          });
-
-          container.querySelector('svg').style.overflow = 'visible';
         })
         .catch(console.error);
     });
-
-    // Simple parallax scroll effect for header background
+  
+    // Parallax scroll effect for header background
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
       const headerBg = document.querySelector('.header-bg');
@@ -213,6 +225,7 @@
       }
     });
   </script>
+  
 
 </body>
 </html>
